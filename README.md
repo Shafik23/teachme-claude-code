@@ -32,6 +32,7 @@ claude
 
 ## Repository Contents
 
+### Getting Started
 | File | Description |
 |------|-------------|
 | [01-getting-started.md](./docs/01-getting-started.md) | Installation, first steps, and basic usage |
@@ -39,9 +40,24 @@ claude
 | [03-slash-commands.md](./docs/03-slash-commands.md) | Complete slash command reference |
 | [04-configuration.md](./docs/04-configuration.md) | Settings, permissions, and customization |
 | [05-tips-and-tricks.md](./docs/05-tips-and-tricks.md) | Power user tips and keyboard shortcuts |
+
+### Integrations
+| File | Description |
+|------|-------------|
 | [06-mcp-servers.md](./docs/06-mcp-servers.md) | Model Context Protocol integrations |
-| [07-hooks.md](./docs/07-hooks.md) | Automation with hooks |
+| [07-hooks.md](./docs/07-hooks.md) | Automation with lifecycle hooks |
 | [08-ide-integrations.md](./docs/08-ide-integrations.md) | VS Code and JetBrains setup |
+
+### Advanced Features
+| File | Description |
+|------|-------------|
+| [09-skills.md](./docs/09-skills.md) | Model-invoked specialized capabilities |
+| [10-plugins.md](./docs/10-plugins.md) | Package and distribute extensions |
+| [11-subagents.md](./docs/11-subagents.md) | Delegate to specialized AI agents |
+
+### Examples
+| File | Description |
+|------|-------------|
 | [examples/](./examples/) | Practical workflow examples |
 
 ## Key Concepts
