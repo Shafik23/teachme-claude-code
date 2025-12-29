@@ -1,0 +1,255 @@
+# Configuration
+
+## Configuration Files
+
+Claude Code uses a hierarchy of settings files:
+
+| Scope | Location | Purpose |
+|-------|----------|---------|
+| User | `~/.claude/settings.json` | Personal global settings |
+| Project (shared) | `.claude/settings.json` | Team settings (commit to git) |
+| Project (local) | `.claude/settings.local.json` | Personal project settings |
+
+Higher scopes override lower ones.
+
+## Key Settings
+
+### Permissions
+
+Control what Claude can do without asking:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(npm run:*)",
+      "Bash(git diff:*)",
+      "Bash(git status)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(secrets/**)",
+      "Bash(rm -rf:*)"
+    ]
+  }
+}
+```
+
+### Permission Patterns
+
+```
+Tool                    - Allow all uses of tool
+Tool(pattern:*)         - Allow with prefix match
+Tool(*:suffix)          - Allow with suffix match
+Tool(exact-match)       - Allow exact match only
+```
+
+Examples:
+```json
+{
+  "allow": [
+    "Bash(npm run:*)",        // npm run test, npm run build, etc.
+    "Bash(git:*)",            // All git commands
+    "Edit(src/**)",           // Edit files in src/
+    "Read(*.md)"              // Read markdown files
+  ]
+}
+```
+
+### Environment Variables
+
+Set environment variables for Claude sessions:
+
+```json
+{
+  "env": {
+    "NODE_ENV": "development",
+    "DEBUG": "true",
+    "API_URL": "http://localhost:3000"
+  }
+}
+```
+
+### Model Selection
+
+Override the default model:
+
+```json
+{
+  "model": "claude-opus-4-5-20251101"
+}
+```
+
+### Extended Thinking
+
+Enable extended thinking by default:
+
+```json
+{
+  "alwaysThinkingEnabled": true
+}
+```
+
+### Output Style
+
+Set default output verbosity:
+
+```json
+{
+  "outputStyle": "Explanatory"
+}
+```
+
+Options: `"Concise"`, `"Normal"`, `"Explanatory"`
+
+### Sandbox Mode
+
+Enable sandboxed bash execution:
+
+```json
+{
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
+  }
+}
+```
+
+## CLAUDE.md Memory Files
+
+Claude reads `CLAUDE.md` files to understand your project:
+
+### Project Memory
+
+Create `CLAUDE.md` in your project root:
+
+```markdown
+# Project: My Awesome App
+
+## Tech Stack
+- React 18 with TypeScript
+- Express.js backend
+- PostgreSQL database
+
+## Conventions
+- Use functional components with hooks
+- Follow Airbnb style guide
+- Write tests for all new features
+
+## Important Commands
+- `npm run dev` - Start development server
+- `npm test` - Run test suite
+- `npm run lint` - Check code style
+
+## Architecture Notes
+- API routes are in `src/api/`
+- Components are in `src/components/`
+- Database models are in `src/models/`
+```
+
+### User Memory
+
+Create `~/.claude/CLAUDE.md` for global preferences:
+
+```markdown
+# My Preferences
+
+## Coding Style
+- I prefer explicit types over inference
+- Use early returns for cleaner code
+- Keep functions under 50 lines
+
+## Communication
+- Be concise in explanations
+- Show code examples
+- Explain trade-offs
+```
+
+### Quick Memory Addition
+
+In a session, start a message with `#` to add to memory:
+
+```
+# Always run prettier after editing TypeScript files
+```
+
+## Default Permission Modes
+
+Set how Claude handles permissions:
+
+```json
+{
+  "permissions": {
+    "defaultMode": "normal"
+  }
+}
+```
+
+Options:
+- `"normal"` - Ask for each action
+- `"plan"` - Analyze only, don't modify
+- `"acceptEdits"` - Auto-approve file edits
+
+## Additional Directories
+
+Allow Claude to access directories outside the project:
+
+```json
+{
+  "permissions": {
+    "additionalDirectories": [
+      "../shared-lib",
+      "~/templates"
+    ]
+  }
+}
+```
+
+## Attribution
+
+Customize commit and PR attribution:
+
+```json
+{
+  "attribution": {
+    "commit": "Co-Authored-By: Claude <noreply@anthropic.com>",
+    "pr": "Generated with Claude Code"
+  }
+}
+```
+
+## Complete Example
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(npm:*)",
+      "Bash(git:*)",
+      "Bash(docker compose:*)"
+    ],
+    "deny": [
+      "Read(.env*)",
+      "Read(**/*.key)",
+      "Bash(rm -rf:*)"
+    ],
+    "additionalDirectories": ["../shared"],
+    "defaultMode": "normal"
+  },
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "model": "claude-sonnet-4-20250514",
+  "alwaysThinkingEnabled": false,
+  "outputStyle": "Normal",
+  "sandbox": {
+    "enabled": false
+  }
+}
+```
