@@ -55,6 +55,15 @@ claude
 | [10-plugins.md](./docs/10-plugins.md) | Package and distribute extensions |
 | [11-subagents.md](./docs/11-subagents.md) | Delegate to specialized AI agents |
 
+### SDK and Automation
+| File | Description |
+|------|-------------|
+| [12-agent-sdk.md](./docs/12-agent-sdk.md) | Build agents programmatically with Python/TypeScript |
+| [13-best-practices.md](./docs/13-best-practices.md) | Official Anthropic best practices guide |
+| [14-checkpoints-and-rewind.md](./docs/14-checkpoints-and-rewind.md) | Undo changes with automatic checkpoints |
+| [15-headless-and-automation.md](./docs/15-headless-and-automation.md) | CI/CD integration and scripting |
+| [16-background-tasks.md](./docs/16-background-tasks.md) | Run long operations in background |
+
 ### Examples
 | File | Description |
 |------|-------------|
