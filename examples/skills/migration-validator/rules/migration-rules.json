@@ -1,0 +1,52 @@
+{
+  "environments": {
+    "development": {
+      "allowed_operations": ["*"],
+      "require_down_migration": false,
+      "warn_on_data_modification": false
+    },
+    "staging": {
+      "allowed_operations": ["*"],
+      "require_down_migration": true,
+      "warn_on_data_modification": true
+    },
+    "production": {
+      "blocked_operations": ["TRUNCATE", "DROP DATABASE"],
+      "require_down_migration": true,
+      "warn_on_data_modification": true,
+      "require_concurrent_index": true,
+      "max_table_lock_seconds": 5
+    }
+  },
+
+  "table_size_thresholds": {
+    "small": 10000,
+    "medium": 1000000,
+    "large": 10000000
+  },
+
+  "large_table_warnings": {
+    "ALTER TABLE": "Consider using pt-online-schema-change or gh-ost",
+    "CREATE INDEX": "Use CREATE INDEX CONCURRENTLY",
+    "ADD CONSTRAINT": "Add as NOT VALID first, then VALIDATE"
+  },
+
+  "custom_patterns": [
+    {
+      "pattern": "\\bSLEEP\\b",
+      "severity": "error",
+      "message": "SLEEP should never be in migrations"
+    },
+    {
+      "pattern": "\\b(password|secret|token)\\s*=\\s*['\"][^'\"]+['\"]",
+      "severity": "error",
+      "message": "Hardcoded secrets detected in migration"
+    }
+  ],
+
+  "naming_conventions": {
+    "timestamp_prefix": "^\\d{14}_",
+    "descriptive_name": true,
+    "snake_case": true
+  }
+}

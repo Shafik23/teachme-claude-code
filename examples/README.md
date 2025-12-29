@@ -6,6 +6,8 @@ This directory contains ready-to-use examples of Claude Code extensibility featu
 
 Skills are model-invoked capabilities that Claude automatically uses when your request matches the skill's description.
 
+### Basic Skills
+
 | Skill | Description | Use When |
 |-------|-------------|----------|
 | [code-explainer](./skills/code-explainer/) | Explains code with diagrams and analogies | "How does this work?", "Explain this code" |
@@ -13,14 +15,45 @@ Skills are model-invoked capabilities that Claude automatically uses when your r
 | [git-assistant](./skills/git-assistant/) | Helps with git operations | Commits, branches, merges, conflicts |
 | [api-designer](./skills/api-designer/) | Designs RESTful APIs | "Design an API", "Create endpoints" |
 
+### Advanced Skills (with Executable Code)
+
+These skills include Python/Node.js scripts that perform real analysis:
+
+| Skill | Description | Scripts Included |
+|-------|-------------|------------------|
+| [dependency-analyzer](./skills/dependency-analyzer/) | Security, licenses, staleness, circular deps | `analyze_deps.py`, `license_check.py`, `circular_deps.py` |
+| [architecture-enforcer](./skills/architecture-enforcer/) | Validate layer deps, module boundaries, naming | `enforce.py` with configurable rules |
+| [migration-validator](./skills/migration-validator/) | Check SQL migrations for safety/locking issues | `validate_migration.py` |
+| [performance-profiler](./skills/performance-profiler/) | Find CPU/memory bottlenecks, N+1 queries | `analyze_profile.py`, `find_bottlenecks.py` |
+
 ### Installing a Skill
 
 ```bash
 # Copy to your personal skills (available in all projects)
-cp -r examples/skills/code-explainer ~/.claude/skills/
+cp -r examples/skills/dependency-analyzer ~/.claude/skills/
 
 # Or copy to project skills (shared with team)
-cp -r examples/skills/test-writer .claude/skills/
+cp -r examples/skills/architecture-enforcer .claude/skills/
+```
+
+### Running Skill Scripts Directly
+
+```bash
+# Analyze dependencies
+python3 examples/skills/dependency-analyzer/scripts/analyze_deps.py --path . --format markdown
+
+# Check architecture violations
+python3 examples/skills/architecture-enforcer/scripts/enforce.py \
+  --config examples/skills/architecture-enforcer/rules/architecture.json \
+  --path .
+
+# Validate migrations
+python3 examples/skills/migration-validator/scripts/validate_migration.py \
+  --path migrations/ --level strict
+
+# Find performance bottlenecks
+python3 examples/skills/performance-profiler/scripts/find_bottlenecks.py \
+  --path src/ --type nodejs
 ```
 
 ---

@@ -1,0 +1,74 @@
+{
+  "layers": {
+    "controllers": {
+      "paths": ["src/controllers/**/*", "src/api/**/*"],
+      "can_import": ["services", "models", "utils", "middleware", "validators"]
+    },
+    "services": {
+      "paths": ["src/services/**/*"],
+      "can_import": ["repositories", "models", "utils", "clients"]
+    },
+    "repositories": {
+      "paths": ["src/repositories/**/*", "src/dal/**/*"],
+      "can_import": ["models", "utils"]
+    },
+    "models": {
+      "paths": ["src/models/**/*", "src/entities/**/*"],
+      "can_import": ["utils"]
+    },
+    "utils": {
+      "paths": ["src/utils/**/*", "src/lib/**/*"],
+      "can_import": []
+    }
+  },
+
+  "boundaries": {
+    "src/modules/auth": {
+      "public": ["index.ts", "types.ts"],
+      "private": ["services/*", "repositories/*", "internal/*"]
+    },
+    "src/modules/payments": {
+      "public": ["index.ts", "types.ts"],
+      "private": ["services/*", "providers/*", "internal/*"]
+    },
+    "src/modules/notifications": {
+      "public": ["index.ts"],
+      "private": ["**/*"]
+    }
+  },
+
+  "naming": {
+    "src/controllers/**/*.ts": {
+      "file_pattern": "^[a-z][a-z0-9-]*\\.controller$",
+      "export_pattern": "^[A-Z][a-zA-Z]*Controller$",
+      "suggestion": "Controllers should be named like 'user.controller.ts' with class 'UserController'"
+    },
+    "src/services/**/*.ts": {
+      "file_pattern": "^[a-z][a-z0-9-]*\\.service$",
+      "export_pattern": "^[A-Z][a-zA-Z]*Service$",
+      "suggestion": "Services should be named like 'user.service.ts' with class 'UserService'"
+    },
+    "src/repositories/**/*.ts": {
+      "file_pattern": "^[a-z][a-z0-9-]*\\.repository$",
+      "export_pattern": "^[A-Z][a-zA-Z]*Repository$",
+      "suggestion": "Repositories should be named like 'user.repository.ts' with class 'UserRepository'"
+    }
+  },
+
+  "dependency_direction": [
+    {
+      "from": "src/domain/**/*.ts",
+      "cannot_import": ["src/infrastructure", "src/ui", "src/api"],
+      "suggestion": "Domain layer must not depend on infrastructure. Use dependency injection."
+    },
+    {
+      "from": "src/models/**/*.ts",
+      "cannot_import": ["src/services", "src/controllers", "src/repositories"],
+      "suggestion": "Models should be pure data structures without business logic dependencies."
+    }
+  ],
+
+  "max_file_lines": 500,
+  "max_function_lines": 50,
+  "max_cyclomatic_complexity": 10
+}

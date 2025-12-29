@@ -1,0 +1,21 @@
+{
+  "allowed": ["permissive", "weak_copyleft"],
+  "blocked": [
+    "AGPL-3.0",
+    "AGPL-3.0-only",
+    "AGPL-3.0-or-later",
+    "SSPL-1.0",
+    "GPL-3.0",
+    "GPL-3.0-only",
+    "GPL-3.0-or-later"
+  ],
+  "review_required": ["strong_copyleft", "problematic", "unknown"],
+  "exceptions": {
+    "example-gpl-package": "Used only in development, not bundled in production"
+  },
+  "notes": {
+    "GPL-2.0": "Allowed only if not linking/bundling with proprietary code",
+    "LGPL": "Allowed for dynamic linking only",
+    "MPL-2.0": "Allowed but modified files must remain under MPL"
+  }
+}
