@@ -391,3 +391,23 @@ When debugging pipeline failures:
 3. Identify root cause
 4. Suggest fix
 ```
+
+## Ready-to-Use Example
+
+See [examples/plugins/deploy-toolkit/](../examples/plugins/deploy-toolkit/) for a complete, working plugin with:
+
+- **3 Commands:** deploy, rollback, env-check
+- **1 Skill:** pre-deploy-check
+- **Hooks:** deployment audit logging
+- **Scripts:** helper scripts for automation
+
+Test it:
+```bash
+claude --plugin-dir ./examples/plugins/deploy-toolkit
+```
+
+Then try:
+```
+/deploy-toolkit:deploy staging
+/deploy-toolkit:env-check prod
+```

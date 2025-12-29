@@ -256,3 +256,19 @@ npm test -- --testPathPattern="new-test-file"
 | Discovery | Semantic matching | User types `/` |
 | Best for | Complex workflows, domain expertise | Quick actions, frequent tasks |
 | Context | Can load multiple files | Single markdown file |
+
+## Ready-to-Use Examples
+
+See the [examples/skills/](../examples/skills/) directory for complete, working skills:
+
+| Skill | Description |
+|-------|-------------|
+| [code-explainer](../examples/skills/code-explainer/) | Explains code with diagrams and analogies |
+| [test-writer](../examples/skills/test-writer/) | Writes comprehensive unit tests |
+| [git-assistant](../examples/skills/git-assistant/) | Helps with git operations |
+| [api-designer](../examples/skills/api-designer/) | Designs RESTful APIs |
+
+Install one:
+```bash
+cp -r examples/skills/code-explainer ~/.claude/skills/
+```

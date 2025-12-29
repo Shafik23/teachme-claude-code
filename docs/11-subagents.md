@@ -368,3 +368,18 @@ A project might have:
 ```
 
 This gives Claude specialized helpers for common tasks while keeping the main conversation focused.
+
+## Ready-to-Use Examples
+
+See [examples/agents/](../examples/agents/) for complete, working subagents:
+
+| Agent | Description |
+|-------|-------------|
+| [code-reviewer](../examples/agents/code-reviewer/) | Thorough code review with severity levels |
+| [documentation-writer](../examples/agents/documentation-writer/) | README, API docs, code comments |
+| [bug-hunter](../examples/agents/bug-hunter/) | Systematic debugging and investigation |
+
+Install one:
+```bash
+cp -r examples/agents/code-reviewer ~/.claude/agents/
+```

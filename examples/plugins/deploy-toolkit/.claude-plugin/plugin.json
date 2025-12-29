@@ -1,0 +1,19 @@
+{
+  "name": "deploy-toolkit",
+  "version": "1.0.0",
+  "description": "Deployment automation toolkit with pre-deploy checks, environment management, and rollback support",
+  "author": {
+    "name": "Your Team",
+    "email": "team@example.com"
+  },
+  "homepage": "https://github.com/example/deploy-toolkit",
+  "repository": "https://github.com/example/deploy-toolkit",
+  "license": "MIT",
+  "keywords": [
+    "deployment",
+    "ci-cd",
+    "automation",
+    "devops"
+  ],
+  "hooks": "./hooks/hooks.json"
+}
