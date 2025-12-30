@@ -133,46 +133,76 @@ Syntax:
 
 ## Popular MCP Servers
 
-### Development Tools
+### Remote HTTP Servers (Quick Setup)
+
+| Server | Command |
+|--------|---------|
+| **Linear** | `claude mcp add --transport http linear https://mcp.linear.app/mcp` |
+| **Notion** | `claude mcp add --transport http notion https://mcp.notion.com/mcp` |
+| **Sentry** | `claude mcp add --transport http sentry https://mcp.sentry.dev/mcp` |
+| **Figma** | `claude mcp add --transport http figma https://mcp.figma.com/mcp` |
+| **Stripe** | `claude mcp add --transport http stripe https://mcp.stripe.com` |
+| **PayPal** | `claude mcp add --transport http paypal https://mcp.paypal.com/mcp` |
+| **Vercel** | `claude mcp add --transport http vercel https://mcp.vercel.com` |
+| **Netlify** | `claude mcp add --transport http netlify https://netlify-mcp.netlify.app/mcp` |
+| **Cloudflare** | `claude mcp add --transport http cloudflare https://bindings.mcp.cloudflare.com/mcp` |
+| **Monday** | `claude mcp add --transport http monday https://mcp.monday.com/mcp` |
+| **Canva** | `claude mcp add --transport http canva https://mcp.canva.com/mcp` |
+| **Hugging Face** | `claude mcp add --transport http hugging-face https://huggingface.co/mcp` |
+| **Honeycomb** | `claude mcp add --transport http honeycomb https://mcp.honeycomb.io/mcp` |
+| **Intercom** | `claude mcp add --transport http intercom https://mcp.intercom.com/mcp` |
+| **Square** | `claude mcp add --transport sse square https://mcp.squareup.com/sse` |
+
+### Development & DevOps
 
 | Server | Purpose |
 |--------|---------|
-| GitHub | Issues, PRs, repos |
-| GitLab | GitLab integration |
-| Linear | Issue tracking |
-| Jira | Atlassian issues |
+| GitHub | Issues, PRs, repos, code reviews |
+| Linear | Modern issue tracking |
+| Jira/Atlassian | Enterprise issues and Confluence |
+| Sentry | Error monitoring and debugging |
+| Honeycomb | Observability and SLOs |
+| Vercel | Deploy and manage websites |
+| Netlify | Build and deploy web apps |
+| Cloudflare | CDN, compute, storage |
 
 ### Databases
 
 | Server | Purpose |
 |--------|---------|
-| PostgreSQL | Query Postgres |
-| MySQL | Query MySQL |
-| MongoDB | Query MongoDB |
-| SQLite | Local databases |
+| PostgreSQL | Query Postgres databases |
+| CData Connect | 270+ enterprise data sources |
+| Snowflake | Data warehouse queries |
+| Databricks | Unity Catalog and Mosaic AI |
 
-### Monitoring
-
-| Server | Purpose |
-|--------|---------|
-| Sentry | Error tracking |
-| Datadog | Monitoring |
-| PagerDuty | Incident management |
-
-### Productivity
+### Productivity & Business
 
 | Server | Purpose |
 |--------|---------|
-| Notion | Docs and wikis |
-| Slack | Team messaging |
-| Gmail | Email automation |
-| Google Drive | File access |
+| Notion | Docs, wikis, databases |
+| Monday | Project management |
+| Asana | Task and project coordination |
+| Clockwise | Calendar and scheduling |
+| Zapier | Workflow automation |
 
-### Design
+### Design & Content
 
 | Server | Purpose |
 |--------|---------|
-| Figma | Design files |
+| Figma | Design files and systems |
+| Canva | Create and edit designs |
+| BioRender | Scientific templates |
+| Cloudinary | Image and video management |
+
+### Finance & Payments
+
+| Server | Purpose |
+|--------|---------|
+| Stripe | Payment processing |
+| PayPal | Payments platform |
+| Ramp | Financial data and analytics |
+
+Find hundreds more at [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
 
 ## Using MCP in Sessions
 
@@ -213,12 +243,59 @@ Some MCP servers require OAuth. Follow the authentication prompts when first usi
 claude --verbose
 ```
 
+## MCP Resources
+
+MCP servers can expose resources you can reference with `@` mentions:
+
+```bash
+# Reference resources in prompts
+> Can you analyze @github:issue://123 and suggest a fix?
+> Compare @postgres:schema://users with @docs:file://database/user-model
+```
+
+Resources are automatically fetched and included as attachments.
+
+---
+
+## MCP Prompts as Slash Commands
+
+MCP servers can expose prompts as slash commands:
+
+```bash
+/mcp__github__list_prs
+/mcp__jira__create_issue "Bug title" high
+```
+
+Use `/` to see available MCP commands from connected servers.
+
+---
+
+## Plugin-Provided MCP Servers
+
+Plugins can bundle MCP servers that start automatically when enabled:
+
+```json
+{
+  "mcpServers": {
+    "plugin-api": {
+      "command": "${CLAUDE_PLUGIN_ROOT}/servers/api-server",
+      "args": ["--port", "8080"]
+    }
+  }
+}
+```
+
+Plugin MCP servers use `${CLAUDE_PLUGIN_ROOT}` for relative paths.
+
+---
+
 ## Security Considerations
 
 1. **Store secrets in environment variables**, not in `.mcp.json`
 2. **Review MCP servers** before adding them
 3. **Use project scope** for team-approved servers only
 4. **Audit MCP access** regularly with `claude mcp list`
+5. **Be careful with untrusted content** - MCP servers that fetch external data may expose you to prompt injection
 
 ## Creating Custom MCP Servers
 

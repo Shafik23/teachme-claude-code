@@ -14,8 +14,16 @@ Hooks are user-defined shell commands that execute at various lifecycle points, 
 | `Stop` | When Claude finishes responding | Post-response actions |
 | `SubagentStop` | When a subagent completes | Handle subagent results |
 | `PreCompact` | Before conversation compaction | Pre-compaction logic |
-| `SessionStart` | When session begins | Initialize environment |
+| `SessionStart` | When session begins | Initialize environment, set env vars |
 | `SessionEnd` | When session ends | Cleanup actions |
+
+### Notification Matchers
+
+Filter notifications by type:
+- `permission_prompt` - Permission requests
+- `idle_prompt` - When Claude is waiting (60+ seconds idle)
+- `auth_success` - Authentication success
+- `elicitation_dialog` - MCP tool input needed
 
 ## Basic Configuration
 
@@ -242,9 +250,22 @@ Hooks receive JSON on stdin with context about the event:
 
 | Code | Meaning |
 |------|---------|
-| 0 | Allow / Continue |
-| 1 | Block / Deny |
-| 2 | Special behavior (event-specific) |
+| 0 | Success - stdout shown in verbose mode |
+| 1 | Non-blocking error - stderr shown in verbose mode |
+| 2 | Blocking error - stderr fed back to Claude |
+
+### Exit Code 2 Behavior by Event
+
+| Event | Exit Code 2 Behavior |
+|-------|---------------------|
+| `PreToolUse` | Blocks tool call, shows stderr to Claude |
+| `PermissionRequest` | Denies permission, shows stderr to Claude |
+| `PostToolUse` | Shows stderr to Claude (tool already ran) |
+| `UserPromptSubmit` | Blocks prompt, erases it, shows stderr to user |
+| `Stop` | Blocks stoppage, shows stderr to Claude |
+| `SubagentStop` | Blocks stoppage, shows stderr to subagent |
+| `SessionStart` | Shows stderr to user only |
+| `SessionEnd` | Shows stderr to user only |
 
 ## JSON Output
 
@@ -290,6 +311,59 @@ Use Claude to evaluate hooks:
 /config
 ```
 
+## Environment Variables
+
+Hooks have access to special environment variables:
+
+| Variable | Description |
+|----------|-------------|
+| `CLAUDE_PROJECT_DIR` | Absolute path to project root |
+| `CLAUDE_ENV_FILE` | (SessionStart only) File to persist env vars |
+| `CLAUDE_CODE_REMOTE` | `"true"` if running in remote/web environment |
+
+### Persisting Environment Variables (SessionStart)
+
+```bash
+#!/bin/bash
+if [ -n "$CLAUDE_ENV_FILE" ]; then
+  echo 'export NODE_ENV=production' >> "$CLAUDE_ENV_FILE"
+  echo 'export API_KEY=your-key' >> "$CLAUDE_ENV_FILE"
+fi
+exit 0
+```
+
+Variables written to `CLAUDE_ENV_FILE` are available in all subsequent bash commands.
+
+---
+
+## Plugin Hooks
+
+Plugins can provide hooks via `hooks/hooks.json`:
+
+```json
+{
+  "description": "Automatic code formatting",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/format.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Plugin hooks run alongside your custom hooks in parallel.
+
+---
+
 ## Best Practices
 
 1. **Keep hooks fast** - Slow hooks delay every operation
@@ -297,6 +371,7 @@ Use Claude to evaluate hooks:
 3. **Log for debugging** - Write to files for troubleshooting
 4. **Test thoroughly** - Hooks run on every matching operation
 5. **Use specific matchers** - Avoid `*` when possible
+6. **Use `$CLAUDE_PROJECT_DIR`** - Reference project scripts with absolute paths
 
 ## Debugging Hooks
 

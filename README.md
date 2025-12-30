@@ -110,6 +110,19 @@ git diff | claude -p "Write a commit message for these changes"
 claude -p "Review the changes in this PR" < pr_diff.txt
 ```
 
+## Keeping Documentation Current
+
+This repository includes a command that automatically syncs documentation with the official Claude Code website:
+
+```bash
+cd teachme-claude-code
+claude
+
+> /update-docs
+```
+
+This will search the web for current Claude Code features, update all documentation files, and push changes to GitHub.
+
 ## Learn More
 
 - [Official Documentation](https://docs.anthropic.com/en/docs/claude-code)

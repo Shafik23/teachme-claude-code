@@ -90,6 +90,25 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 
 ---
 
+## MCP Slash Commands
+
+MCP servers can expose prompts as slash commands. These follow the pattern:
+
+```
+/mcp__<server-name>__<prompt-name> [arguments]
+```
+
+Examples:
+```bash
+/mcp__github__list_prs
+/mcp__github__pr_review 456
+/mcp__jira__create_issue "Bug title" high
+```
+
+MCP commands are dynamically discovered from connected servers. Use `/mcp` to manage connections.
+
+---
+
 ## Custom Slash Commands
 
 Create your own commands as Markdown files.
@@ -173,3 +192,53 @@ Organize commands in subdirectories:
     endpoint.md     -> /backend:endpoint
     migration.md    -> /backend:migration
 ```
+
+### Frontmatter Options
+
+| Field | Description | Default |
+|-------|-------------|---------|
+| `allowed-tools` | Tools the command can use | Inherits from conversation |
+| `argument-hint` | Arguments hint shown in autocomplete | None |
+| `description` | Brief description of command | First line of prompt |
+| `model` | Override model for this command | Inherits from conversation |
+| `disable-model-invocation` | Prevent SlashCommand tool from calling this | false |
+
+---
+
+## Plugin Commands
+
+Plugins can provide custom slash commands that integrate with Claude Code.
+
+- **Namespaced**: Use `/plugin-name:command-name` to avoid conflicts
+- **Automatically available**: Commands appear in `/help` when plugin is enabled
+- **Fully integrated**: Support all command features (arguments, frontmatter, bash execution)
+
+---
+
+## SlashCommand Tool
+
+Claude can invoke custom slash commands programmatically via the `SlashCommand` tool. To encourage this, reference commands by name in your prompts or `CLAUDE.md`:
+
+```
+Run /write-unit-test when you are about to start writing tests.
+```
+
+### Disable SlashCommand Tool
+
+To prevent Claude from executing slash commands via the tool:
+
+```
+/permissions
+# Add to deny rules: SlashCommand
+```
+
+---
+
+## Skills vs Slash Commands
+
+| Aspect | Slash Commands | Skills |
+|--------|----------------|--------|
+| **Invocation** | Explicit (`/command`) | Automatic (Claude decides) |
+| **Discovery** | User types `/` | Semantic matching |
+| **Best for** | Quick actions, frequent tasks | Complex workflows, domain expertise |
+| **Structure** | Single .md file | Directory with SKILL.md + resources |
