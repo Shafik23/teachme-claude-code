@@ -1,15 +1,17 @@
 ---
 description: Search the web for current Claude Code features, update all documentation, and push to GitHub
-allowed-tools: WebSearch, WebFetch, Read, Edit, Write, Glob, Grep, Bash(git:*), Bash(gh:*), mcp__firecrawl-mcp__firecrawl_scrape, mcp__firecrawl-mcp__firecrawl_search
+allowed-tools: WebSearch, WebFetch, Read, Edit, Write, Glob, Grep, Bash(git:*), Bash(gh:*)
 ---
 
 # Documentation Auto-Updater
 
 You are updating the Claude Code educational documentation in this repository. Follow these steps methodically.
 
+**CRITICAL: You MUST use ONLY the built-in `WebSearch` and `WebFetch` tools for web searches and fetching. DO NOT use any MCP tools like firecrawl, mcp__firecrawl-mcp__*, or any other MCP-based web scraping tools. Use ONLY the native Claude Code WebSearch and WebFetch tools.**
+
 ## Step 1: Search for Current Claude Code Information
 
-Search the web for the latest Claude Code features and documentation. Run these searches:
+Use the built-in `WebSearch` tool (NOT firecrawl or any MCP tools) to search for the latest Claude Code features and documentation. Run these searches:
 
 1. Search: "Claude Code CLI features 2025"
 2. Search: "Claude Code slash commands reference"
@@ -21,11 +23,13 @@ Search the web for the latest Claude Code features and documentation. Run these 
 
 ## Step 2: Fetch Official Documentation
 
-Fetch content from these official sources:
+Use the built-in `WebFetch` tool (NOT firecrawl or any MCP tools) to fetch content from these official sources:
 
-1. https://docs.anthropic.com/en/docs/claude-code - Main documentation
-2. https://docs.anthropic.com/en/docs/claude-code/overview - Overview
-3. https://github.com/anthropics/claude-code - GitHub README
+1. https://code.claude.com/docs/en/overview - Main overview
+2. https://code.claude.com/docs/en/slash-commands - Slash commands reference
+3. https://code.claude.com/docs/en/hooks - Hooks documentation
+4. https://code.claude.com/docs/en/mcp - MCP documentation
+5. https://github.com/anthropics/claude-code - GitHub README
 
 ## Step 3: Read Current Documentation
 
