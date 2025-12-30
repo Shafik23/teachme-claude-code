@@ -17,13 +17,14 @@
 | Shortcut | Action |
 |----------|--------|
 | `Ctrl+O` | Toggle verbose output (transcript mode) |
-| `Shift+Tab` or `Alt+M` | Toggle permission modes |
-| `Option+P` (Mac) / `Alt+P` | Switch model while typing |
-| `Alt+T` | Toggle thinking mode |
-| `Esc + Esc` | Rewind code/conversation |
-| `Ctrl+G` | Edit prompt in system text editor |
+| `Shift+Tab` or `Alt+M` | Toggle permission modes (normal/plan/acceptEdits) |
+| `Option+P` (Mac) / `Alt+P` | Switch model while typing prompt |
+| `Alt+T` | Toggle extended thinking mode |
+| `Esc + Esc` | Rewind code/conversation (double-tap Escape) |
+| `Ctrl+G` | Edit prompt in system text editor ($EDITOR) |
 | `Alt+Y` | Yank-pop (cycle through kill ring after Ctrl+Y) |
-| `?` | Show all shortcuts |
+| `Ctrl+T` | Toggle syntax highlighting |
+| `?` | Show all available shortcuts |
 
 ### Image Handling
 
@@ -187,16 +188,16 @@ Enable with `/vim` for powerful text editing:
 
 ### Use the Right Model
 
-- **Claude Opus 4** - Complex reasoning, architecture decisions
+- **Claude Opus 4.5** - Complex reasoning, architecture decisions, highest capability
 - **Claude Sonnet 4** - Balanced speed and capability (default)
-- **Claude Haiku** - Quick tasks, simple edits
+- **Claude Haiku 3.5** - Quick tasks, simple edits, fastest response
 
 Switch mid-session:
 ```
 /model
 ```
 
-Or use prefix:
+Or use keyboard shortcut while typing:
 ```
 Option+P (Mac) / Alt+P (Windows/Linux)
 ```
@@ -209,9 +210,9 @@ Run long operations in background:
 > Run the full test suite in the background
 ```
 
-Or press `Ctrl+B` to background a running command.
+Or press `Ctrl+Z` to background a running command.
 
-Check background tasks:
+Check background shell tasks:
 ```
 /bashes
 ```

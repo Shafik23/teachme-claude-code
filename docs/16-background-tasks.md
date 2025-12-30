@@ -16,10 +16,10 @@ Run shell commands in the background:
 
 ### Checking Background Tasks
 
-Use `/tasks` to see running background operations:
+Use `/bashes` to see running background shell operations:
 
 ```
-/tasks
+/bashes
 
 Active tasks:
   [shell-abc123] Running: npm run test:all (2m 34s)

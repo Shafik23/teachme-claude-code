@@ -128,7 +128,7 @@ claude --resume
 # Resume by session ID
 claude --resume abc123
 
-# Resume named session
+# Resume named session (use /rename to name sessions)
 claude --resume my-feature-work
 ```
 

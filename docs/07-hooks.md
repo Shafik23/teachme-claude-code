@@ -6,12 +6,13 @@ Hooks are user-defined shell commands that execute at various lifecycle points, 
 
 | Event | When It Runs | Common Uses |
 |-------|--------------|-------------|
-| `PreToolUse` | Before a tool executes | Block dangerous commands, validate inputs |
+| `PreToolUse` | Before a tool executes | Block dangerous commands, validate inputs, modify tool input |
 | `PostToolUse` | After a tool executes | Auto-format, logging, notifications |
 | `PermissionRequest` | When permission dialog appears | Auto-approve/deny based on rules |
 | `UserPromptSubmit` | When user submits a prompt | Add context, validate input |
 | `Notification` | When Claude sends notification | Custom notification handling |
 | `Stop` | When Claude finishes responding | Post-response actions |
+| `SubagentStart` | When a subagent begins | Initialize subagent context |
 | `SubagentStop` | When a subagent completes | Handle subagent results |
 | `PreCompact` | Before conversation compaction | Pre-compaction logic |
 | `SessionStart` | When session begins | Initialize environment, set env vars |
@@ -263,6 +264,7 @@ Hooks receive JSON on stdin with context about the event:
 | `PostToolUse` | Shows stderr to Claude (tool already ran) |
 | `UserPromptSubmit` | Blocks prompt, erases it, shows stderr to user |
 | `Stop` | Blocks stoppage, shows stderr to Claude |
+| `SubagentStart` | Blocks subagent start, shows stderr to Claude |
 | `SubagentStop` | Blocks stoppage, shows stderr to subagent |
 | `SessionStart` | Shows stderr to user only |
 | `SessionEnd` | Shows stderr to user only |
@@ -274,10 +276,27 @@ For advanced control, output JSON:
 ```json
 {
   "allow": true,
-  "message": "Approved with note",
-  "modification": "modified content"
+  "message": "Approved with note"
 }
 ```
+
+### Modifying Tool Input (PreToolUse)
+
+PreToolUse hooks can modify the tool input before execution:
+
+```json
+{
+  "allow": true,
+  "updatedInput": {
+    "command": "npm test -- --coverage"
+  }
+}
+```
+
+This is useful for:
+- Adding flags or options to commands
+- Rewriting file paths
+- Injecting environment-specific settings
 
 ## Prompt-Based Hooks
 

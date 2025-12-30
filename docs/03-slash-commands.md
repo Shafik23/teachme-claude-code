@@ -9,8 +9,8 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | `/help` | Show help information |
 | `/exit` | Exit Claude Code |
 | `/clear` | Clear conversation history |
-| `/resume [session]` | Resume a previous conversation by ID or name |
-| `/rename <name>` | Rename current session for easier identification |
+| `/resume [session]` | Resume a previous conversation by ID, name, or pick from list |
+| `/rename <name>` | Rename current session for easier identification (enables named resume) |
 | `/export [filename]` | Export conversation to file or clipboard |
 
 ## Configuration
@@ -23,7 +23,7 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | `/permissions` | View or update permissions |
 | `/privacy-settings` | View and update privacy settings |
 | `/statusline` | Configure status line display |
-| `/output-style [style]` | Set output style directly or from menu |
+| `/output-style [style]` | Set output style (Concise, Normal, Explanatory) |
 | `/theme` | Open theme picker (Ctrl+T to toggle syntax highlighting) |
 
 ## Context Management
@@ -31,8 +31,8 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | Command | Description |
 |---------|-------------|
 | `/add-dir` | Add additional working directories |
-| `/context` | Visualize current context usage |
-| `/compact [instructions]` | Compact conversation with optional focus |
+| `/context` | Visualize current context window usage |
+| `/compact [instructions]` | Compact conversation with optional focus instructions |
 
 ## Project Tools
 
@@ -65,24 +65,23 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 
 | Command | Description |
 |---------|-------------|
-| `/cost` | Show token usage statistics |
+| `/cost` | Show token usage statistics for current session |
 | `/stats` | Visualize daily usage, streaks, and favorite model |
 | `/status` | Show version, model, account, and connectivity info |
 | `/usage` | Show plan usage limits and rate limit status |
-| `/doctor` | Check installation health |
+| `/doctor` | Check installation health and diagnose issues |
 | `/bug` | Report bugs to Anthropic |
-| `/release-notes` | View release notes |
+| `/release-notes` | View release notes for current version |
 
 ## Advanced
 
 | Command | Description |
 |---------|-------------|
 | `/vim` | Enter vim mode for editing |
-| `/sandbox` | Enable sandboxed bash tool |
-| `/bashes` | List and manage background tasks |
-| `/terminal-setup` | Install Shift+Enter key binding |
+| `/sandbox` | Enable sandboxed bash tool (macOS only) |
+| `/bashes` | List and manage background shell tasks |
+| `/terminal-setup` | Install Shift+Enter key binding for multiline input |
 | `/security-review` | Security review of pending changes |
-| `/output-style [style]` | Set output style |
 
 ## Account
 

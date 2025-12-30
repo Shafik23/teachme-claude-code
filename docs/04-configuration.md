@@ -189,9 +189,16 @@ For project-specific rules, create files in `.claude/rules/`:
   security.md       # Security guidelines
   style.md          # Code style rules
   testing.md        # Testing requirements
+  api-patterns.md   # API design patterns
 ```
 
-Files in this directory are automatically loaded and provide structured guidance to Claude.
+Files in this directory are automatically loaded and provide structured guidance to Claude. Each file can focus on a specific aspect of your project's requirements.
+
+**Best Practices for Rules:**
+- Keep each rule file focused on one topic
+- Use clear, actionable language
+- Include examples where helpful
+- Update rules as project conventions evolve
 
 ### Dynamic Memory Updates
 
