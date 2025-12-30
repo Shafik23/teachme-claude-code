@@ -15,7 +15,19 @@ curl -fsSL https://claude.ai/install.sh | bash
 brew install --cask claude-code
 ```
 
-### Option 3: npm (Cross-platform)
+### Option 3: Windows
+
+**PowerShell:**
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+
+**CMD:**
+```cmd
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+```
+
+### Option 4: npm (Cross-platform)
 
 Requires Node.js 18+:
 
@@ -28,10 +40,11 @@ npm install -g @anthropic-ai/claude-code
 After installation, start Claude Code:
 
 ```bash
+cd your-project
 claude
 ```
 
-On first run, you'll authenticate with your Anthropic account.
+On first run, you'll authenticate with your [Claude.ai](https://claude.ai/) account (recommended) or [Claude Console](https://console.anthropic.com/) account.
 
 ## Basic Usage
 
@@ -109,11 +122,20 @@ You can configure these in settings (see [04-configuration.md](./04-configuratio
 ### Resume Previous Sessions
 
 ```bash
-# List recent sessions
+# Open session picker
 claude --resume
 
-# Resume specific session
+# Resume by session ID
 claude --resume abc123
+
+# Resume named session
+claude --resume my-feature-work
+```
+
+### Continue Last Session
+
+```bash
+claude --continue
 ```
 
 ### Clear Conversation

@@ -16,10 +16,13 @@
 
 | Shortcut | Action |
 |----------|--------|
-| `Ctrl+O` | Toggle verbose output |
+| `Ctrl+O` | Toggle verbose output (transcript mode) |
 | `Shift+Tab` or `Alt+M` | Toggle permission modes |
-| `Option+P` (Mac) / `Alt+P` | Switch model |
+| `Option+P` (Mac) / `Alt+P` | Switch model while typing |
+| `Alt+T` | Toggle thinking mode |
 | `Esc + Esc` | Rewind code/conversation |
+| `Ctrl+G` | Edit prompt in system text editor |
+| `Alt+Y` | Yank-pop (cycle through kill ring after Ctrl+Y) |
 | `?` | Show all shortcuts |
 
 ### Image Handling
@@ -42,10 +45,10 @@
 
 | Prefix | Action |
 |--------|--------|
-| `#` | Add to CLAUDE.md memory |
 | `/` | Run slash command |
 | `!` | Run bash command directly |
 | `@` | Reference a file (autocomplete) |
+| `&` | Start background task (Claude Code Web) |
 
 ## Productivity Tips
 
@@ -285,10 +288,25 @@ Check background tasks:
 - `generated/` - Auto-generated files
 ```
 
-### Quick Memory Updates
+### Memory Updates
 
-During session:
+During session, tell Claude to update your memory:
 ```
-# Always format with prettier after editing TS files
-# The API key is in process.env.API_KEY, never hardcode it
+> Always format with prettier after editing TS files - update CLAUDE.md
 ```
+
+Or use:
+```
+/memory
+```
+
+## LSP Integration
+
+Claude Code includes Language Server Protocol support for code intelligence:
+
+- **Go to definition**: Find where symbols are defined
+- **Find references**: Find all usages of a symbol
+- **Hover documentation**: Get type info and docs
+- **Workspace symbols**: Search across the codebase
+
+This works automatically with supported language servers.

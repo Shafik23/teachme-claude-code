@@ -168,13 +168,40 @@ Create `~/.claude/CLAUDE.md` for global preferences:
 - Explain trade-offs
 ```
 
-### Quick Memory Addition
+### Import Other Files
 
-In a session, start a message with `#` to add to memory:
+CLAUDE.md files can import other files:
+
+```markdown
+# Project Memory
+
+## Additional Context
+@path/to/coding-standards.md
+@path/to/api-guidelines.md
+```
+
+### Rules Directory
+
+For project-specific rules, create files in `.claude/rules/`:
 
 ```
-# Always run prettier after editing TypeScript files
+.claude/rules/
+  security.md       # Security guidelines
+  style.md          # Code style rules
+  testing.md        # Testing requirements
 ```
+
+Files in this directory are automatically loaded and provide structured guidance to Claude.
+
+### Dynamic Memory Updates
+
+During a session, ask Claude to update your CLAUDE.md:
+
+```
+> Always run prettier after editing TypeScript files - add this to CLAUDE.md
+```
+
+Or use the `/memory` command to edit memory files directly.
 
 ## Default Permission Modes
 
@@ -221,6 +248,22 @@ Customize commit and PR attribution:
 }
 ```
 
+## MCP Tool Permissions
+
+Use wildcards for MCP tool permissions:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "mcp__github",
+      "mcp__github__*",
+      "mcp__linear__get_issue"
+    ]
+  }
+}
+```
+
 ## Complete Example
 
 ```json
@@ -232,7 +275,8 @@ Customize commit and PR attribution:
       "Grep",
       "Bash(npm:*)",
       "Bash(git:*)",
-      "Bash(docker compose:*)"
+      "Bash(docker compose:*)",
+      "mcp__github__*"
     ],
     "deny": [
       "Read(.env*)",

@@ -9,18 +9,22 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | `/help` | Show help information |
 | `/exit` | Exit Claude Code |
 | `/clear` | Clear conversation history |
-| `/resume [session]` | Resume a previous conversation |
-| `/rename <name>` | Rename current session |
+| `/resume [session]` | Resume a previous conversation by ID or name |
+| `/rename <name>` | Rename current session for easier identification |
+| `/export [filename]` | Export conversation to file or clipboard |
 
 ## Configuration
 
 | Command | Description |
 |---------|-------------|
-| `/config` | Open settings interface |
+| `/config` | Open settings interface (Config tab) |
+| `/settings` | Alias for `/config` |
 | `/model` | Select or change AI model |
 | `/permissions` | View or update permissions |
 | `/privacy-settings` | View and update privacy settings |
 | `/statusline` | Configure status line display |
+| `/output-style [style]` | Set output style directly or from menu |
+| `/theme` | Open theme picker (Ctrl+T to toggle syntax highlighting) |
 
 ## Context Management
 
@@ -62,10 +66,9 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | Command | Description |
 |---------|-------------|
 | `/cost` | Show token usage statistics |
-| `/stats` | Visualize daily usage and streaks |
-| `/status` | Show version, model, account info |
-| `/usage` | Show plan usage limits |
-| `/export [filename]` | Export conversation to file |
+| `/stats` | Visualize daily usage, streaks, and favorite model |
+| `/status` | Show version, model, account, and connectivity info |
+| `/usage` | Show plan usage limits and rate limit status |
 | `/doctor` | Check installation health |
 | `/bug` | Report bugs to Anthropic |
 | `/release-notes` | View release notes |
