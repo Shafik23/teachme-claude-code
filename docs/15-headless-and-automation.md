@@ -216,8 +216,32 @@ Shows:
 export ANTHROPIC_API_KEY=your-key
 
 # Optional
-export CLAUDE_CODE_MODEL=claude-sonnet-4  # Override model
-export CLAUDE_CODE_MAX_TURNS=50          # Limit iterations
+export ANTHROPIC_MODEL=claude-sonnet-4-5-20250929  # Override model
+export ANTHROPIC_SMALL_FAST_MODEL=claude-3-5-haiku # Override small model
+export ANTHROPIC_DEFAULT_SONNET_MODEL=...          # Control sonnet alias
+export ANTHROPIC_DEFAULT_OPUS_MODEL=...            # Control opus alias
+
+# Disable non-essential traffic
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=true
+
+# Override shell detection
+export CLAUDE_CODE_SHELL=/bin/zsh
+
+# Bash timeout
+export BASH_DEFAULT_TIMEOUT_MS=120000
+```
+
+## CLI Flags
+
+```bash
+# Override agent for session
+claude --agent my-custom-agent
+
+# Disable slash commands
+claude --disable-slash-commands
+
+# Set max budget
+claude --max-budget-usd 10.00
 ```
 
 ## Error Handling

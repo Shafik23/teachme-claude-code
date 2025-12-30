@@ -103,6 +103,7 @@ Then use:
 | `hooks` | string/object | Hook config |
 | `mcpServers` | string/object | MCP config |
 | `lspServers` | string/object | LSP config |
+| `outputStyles` | string/array | Output style paths |
 
 ### Full Manifest Example
 
@@ -266,7 +267,23 @@ claude plugin remove my-plugin
 
 # In-session management
 /plugin
+
+# Discover plugins from marketplaces
+/plugin discover
+
+# Validate plugin structure
+/plugin validate ./my-plugin
 ```
+
+### Plugin Marketplaces
+
+Plugins can be distributed through marketplaces. Use `extraKnownMarketplaces` in your settings for team collaboration. Add branch/tag support with fragment syntax:
+
+```bash
+claude plugin add https://github.com/user/plugin.git#v2.0
+```
+
+Auto-update toggles allow per-marketplace control over automatic updates.
 
 ## Converting Existing Config to Plugin
 

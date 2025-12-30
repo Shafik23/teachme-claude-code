@@ -8,15 +8,15 @@ Hooks are user-defined shell commands that execute at various lifecycle points, 
 |-------|--------------|-------------|
 | `PreToolUse` | Before a tool executes | Block dangerous commands, validate inputs, modify tool input |
 | `PostToolUse` | After a tool executes | Auto-format, logging, notifications |
-| `PermissionRequest` | When permission dialog appears | Auto-approve/deny based on rules |
+| `PermissionRequest` | When permission dialog appears | Auto-approve/deny based on rules, process 'always allow' suggestions |
 | `UserPromptSubmit` | When user submits a prompt | Add context, validate input |
 | `Notification` | When Claude sends notification | Custom notification handling |
 | `Stop` | When Claude finishes responding | Post-response actions |
 | `SubagentStart` | When a subagent begins | Initialize subagent context |
-| `SubagentStop` | When a subagent completes | Handle subagent results |
+| `SubagentStop` | When a subagent completes | Handle subagent results (includes agent_id and agent_transcript_path) |
 | `PreCompact` | Before conversation compaction | Pre-compaction logic |
 | `SessionStart` | When session begins | Initialize environment, set env vars |
-| `SessionEnd` | When session ends | Cleanup actions |
+| `SessionEnd` | When session ends | Cleanup actions, logging session statistics |
 
 ### Notification Matchers
 
@@ -300,18 +300,18 @@ This is useful for:
 
 ## Prompt-Based Hooks
 
-Use Claude to evaluate hooks:
+Use an LLM (Haiku) to evaluate hooks with context-aware decisions:
 
 ```json
 {
   "hooks": {
-    "PreToolUse": [
+    "Stop": [
       {
-        "matcher": "Bash",
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Is this command safe? Respond with JSON: {\"allow\": true/false, \"reason\": \"...\"}"
+            "prompt": "Evaluate if Claude should stop: $ARGUMENTS. Check if all tasks are complete.",
+            "timeout": 30
           }
         ]
       }
@@ -319,6 +319,8 @@ Use Claude to evaluate hooks:
   }
 }
 ```
+
+Prompt-based hooks work especially well with `Stop` and `SubagentStop` events for intelligent, context-aware decisions about whether Claude should continue working. Use `$ARGUMENTS` as a placeholder for the hook input JSON.
 
 ## Managing Hooks
 

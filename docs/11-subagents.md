@@ -8,9 +8,11 @@ Claude Code includes several built-in subagents:
 
 | Agent | Purpose | When Used |
 |-------|---------|-----------|
-| **Explore** | Codebase exploration | Finding files, understanding structure |
+| **Explore** | Codebase exploration (powered by Haiku) | Finding files, understanding structure efficiently |
 | **Plan** | Architecture planning | Designing implementation approaches |
 | **Verify** | Verification tasks | Checking work, validating changes |
+
+Claude can dynamically choose the model used by subagents and can resume subagents when needed for follow-up work.
 
 ## How Subagents Work
 
@@ -61,9 +63,11 @@ Provide feedback with file:line references.
 |-------|----------|-------------|
 | `name` | Yes | Unique identifier |
 | `description` | Yes | What the agent does |
-| `skills` | No | Skills this agent can use |
+| `skills` | No | Skills this agent can use (auto-loaded for the subagent) |
 | `allowed-tools` | No | Tools available to this agent |
+| `disallowedTools` | No | Tools explicitly blocked for this agent |
 | `model` | No | Override model for this agent |
+| `permissionMode` | No | Permission mode for the agent |
 
 ## Example Subagents
 

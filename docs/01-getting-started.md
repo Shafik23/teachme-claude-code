@@ -130,6 +130,9 @@ claude --resume abc123
 
 # Resume named session (use /rename to name sessions)
 claude --resume my-feature-work
+
+# Fork a session with custom ID
+claude --resume abc123 --fork-session --session-id new-session-id
 ```
 
 ### Continue Last Session

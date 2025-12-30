@@ -146,8 +146,9 @@ Claude will:
 1. Analyze the current implementation
 2. Propose a detailed plan
 3. Wait for your approval before making changes
+4. Ask clarifying questions if needed
 
-Toggle with `Shift+Tab` or `Alt+M`.
+Toggle with `Shift+Tab` or `Alt+M`. When rejecting a plan, you can now provide feedback telling Claude what to change.
 
 ## Subagents
 
@@ -157,6 +158,8 @@ Claude can delegate specialized tasks:
 > Use a subagent to research the best practices for rate limiting
 > Spawn an agent to analyze performance bottlenecks
 ```
+
+Claude can dynamically choose the model used by subagents and resume subagents when needed. The Explore subagent (powered by Haiku) efficiently searches through your codebase to save context.
 
 ## Web Capabilities
 

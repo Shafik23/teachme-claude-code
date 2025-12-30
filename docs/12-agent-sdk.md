@@ -30,6 +30,8 @@ async for message in query(prompt="Fix the bug in auth.py"):
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
+The Python SDK automatically bundles the Claude Code CLI—no separate installation required.
+
 ### 2. Install the SDK
 
 ```bash
@@ -49,10 +51,16 @@ export ANTHROPIC_API_KEY=your-api-key
 Also supports:
 - **Amazon Bedrock**: `CLAUDE_CODE_USE_BEDROCK=1`
 - **Google Vertex AI**: `CLAUDE_CODE_USE_VERTEX=1`
+- **Microsoft Foundry**: `CLAUDE_CODE_USE_FOUNDRY=1`
 
 ## Quick Start
 
 ### Python
+
+The Python SDK provides two main APIs:
+
+1. **`query()`** - Simple text generation (no tools)
+2. **`ClaudeSDKClient`** - Full agentic API with tools, sessions, and hooks
 
 ```python
 import asyncio
@@ -67,6 +75,8 @@ async def main():
 
 asyncio.run(main())
 ```
+
+For custom tools defined as Python functions, use `ClaudeSDKClient` which implements them as in-process MCP servers.
 
 ### TypeScript
 

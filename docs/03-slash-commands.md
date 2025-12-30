@@ -78,9 +78,9 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | Command | Description |
 |---------|-------------|
 | `/vim` | Enter vim mode for editing |
-| `/sandbox` | Enable sandboxed bash tool (macOS only) |
+| `/sandbox` | Enable sandboxed bash tool with filesystem and network isolation |
 | `/bashes` | List and manage background shell tasks |
-| `/terminal-setup` | Install Shift+Enter key binding for multiline input |
+| `/terminal-setup` | Install Shift+Enter key binding for multiline input (iTerm2, VSCode, Kitty, Alacritty, Zed, Warp, WezTerm) |
 | `/security-review` | Security review of pending changes |
 
 ## Account

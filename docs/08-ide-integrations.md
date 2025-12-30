@@ -24,6 +24,11 @@ Or install from: [VS Code Marketplace](https://marketplace.visualstudio.com/item
 | **Auto-Accept Mode** | Skip confirmation for trusted operations |
 | **Multiple Conversations** | Separate tabs for different tasks |
 | **History Access** | Browse and resume past conversations |
+| **Streaming Messages** | Real-time response display |
+| **Tab Icon Badges** | Blue for pending permissions, orange for unread completions |
+| **Secondary Sidebar** | Display Claude Code in the right sidebar (VS Code 1.97+) |
+| **Drag and Drop** | Drag files and folders directly into chat |
+| **Copy Code Button** | Copy code blocks and bash tool inputs easily |
 
 ### Keyboard Shortcuts
 
@@ -52,10 +57,13 @@ Access via `Preferences > Settings > Claude Code`:
 |---------|-------------|
 | Selected Model | Choose default Claude model |
 | Use Terminal | Launch in terminal mode |
-| Initial Permission Mode | Default permission behavior |
-| Preferred Location | Sidebar or panel |
+| Initial Permission Mode | Default permission behavior for new conversations |
+| Preferred Location | Sidebar, panel, or secondary sidebar |
 | Autosave | Save files before Claude reads/writes |
 | Use Ctrl+Enter | Send with Ctrl+Enter instead of Enter |
+| Respect .gitignore | Include .gitignored files in file searches |
+| Chat Font Size/Family | Customize chat appearance |
+| Enable Thinking Toggle | Toggle to enable/disable thinking in IDE |
 
 ### Tips
 

@@ -20,10 +20,14 @@
 | `Shift+Tab` or `Alt+M` | Toggle permission modes (normal/plan/acceptEdits) |
 | `Option+P` (Mac) / `Alt+P` | Switch model while typing prompt |
 | `Alt+T` | Toggle extended thinking mode |
+| `Tab` | Toggle thinking mode (sticky across sessions) |
 | `Esc + Esc` | Rewind code/conversation (double-tap Escape) |
 | `Ctrl+G` | Edit prompt in system text editor ($EDITOR) |
+| `Ctrl+Y` | Yank (paste) deleted text |
 | `Alt+Y` | Yank-pop (cycle through kill ring after Ctrl+Y) |
-| `Ctrl+T` | Toggle syntax highlighting |
+| `Ctrl+T` | Toggle syntax highlighting (in `/theme`) |
+| `Ctrl+R` | Search command history |
+| `Ctrl+S` | Copy stats screenshot to clipboard |
 | `?` | Show all available shortcuts |
 
 ### Image Handling
@@ -188,9 +192,9 @@ Enable with `/vim` for powerful text editing:
 
 ### Use the Right Model
 
-- **Claude Opus 4.5** - Complex reasoning, architecture decisions, highest capability
-- **Claude Sonnet 4** - Balanced speed and capability (default)
-- **Claude Haiku 3.5** - Quick tasks, simple edits, fastest response
+- **Claude Opus 4.5** - Complex reasoning, architecture decisions, highest capability (available for Pro users)
+- **Claude Sonnet 4.5** - Balanced speed and capability (default)
+- **Claude Haiku 4.5** - Quick tasks, simple edits, fastest response (uses Sonnet in plan mode)
 
 Switch mid-session:
 ```
@@ -309,5 +313,31 @@ Claude Code includes Language Server Protocol support for code intelligence:
 - **Find references**: Find all usages of a symbol
 - **Hover documentation**: Get type info and docs
 - **Workspace symbols**: Search across the codebase
+- **Go to implementation**: Find implementations of interfaces
+- **Call hierarchy**: Find incoming/outgoing calls
 
 This works automatically with supported language servers.
+
+## Claude in Chrome (Beta)
+
+Control your browser directly from Claude Code using the Chrome extension:
+
+1. Install the extension: https://claude.ai/chrome
+2. Claude Code can then interact with web pages for testing, scraping, or automation
+
+## Named Sessions
+
+Organize your work with named sessions:
+
+```bash
+# Rename current session
+/rename my-feature-work
+
+# Resume by name
+claude --resume my-feature-work
+
+# Or from REPL
+/resume my-feature-work
+```
+
+The `/resume` screen shows sessions grouped by branch with search, preview (P), and rename (R) shortcuts.

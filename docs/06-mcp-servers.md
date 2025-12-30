@@ -9,7 +9,14 @@ MCP enables Claude Code to connect to external tools and data sources through th
 - **Databases**: Query PostgreSQL, MySQL, MongoDB directly
 - **Design Tools**: Work with Figma designs and design systems
 - **Communication**: Automate Gmail, Slack workflows
+- **Browser Control**: Control your browser with Claude in Chrome (Beta)
 - **Custom Tools**: Connect to your company's internal APIs
+
+## Remote MCP Support
+
+Remote MCP servers offer a lower maintenance alternative to local servers. Just add the vendor's URL—no manual setup required. Vendors handle updates, scaling, and availability.
+
+Claude Code features native OAuth support for remote MCP servers, ensuring secure connections. Simply authenticate once, and Claude Code handles the rest.
 
 ## Installing MCP Servers
 
