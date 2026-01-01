@@ -159,7 +159,7 @@ Claude can delegate specialized tasks:
 > Spawn an agent to analyze performance bottlenecks
 ```
 
-Claude can dynamically choose the model used by subagents and resume subagents when needed. The Explore subagent (powered by Haiku) efficiently searches through your codebase to save context.
+Claude can dynamically choose the model used by subagents and resume subagents when needed. The Explore subagent (powered by Haiku) efficiently searches through your codebase to save context. Background agents can run in parallel while you continue working on other tasks.
 
 ## Web Capabilities
 

@@ -19,8 +19,8 @@
 | `Ctrl+O` | Toggle verbose output (transcript mode) |
 | `Shift+Tab` or `Alt+M` | Toggle permission modes (normal/plan/acceptEdits) |
 | `Option+P` (Mac) / `Alt+P` | Switch model while typing prompt |
-| `Alt+T` | Toggle extended thinking mode |
-| `Tab` | Toggle thinking mode (sticky across sessions) |
+| `Alt+T` | Toggle thinking mode (primary shortcut) |
+| `Tab` | Toggle thinking mode (alternative, sticky across sessions) |
 | `Esc + Esc` | Rewind code/conversation (double-tap Escape) |
 | `Ctrl+G` | Edit prompt in system text editor ($EDITOR) |
 | `Ctrl+Y` | Yank (paste) deleted text |
@@ -307,16 +307,17 @@ Or use:
 
 ## LSP Integration
 
-Claude Code includes Language Server Protocol support for code intelligence:
+Claude Code includes Language Server Protocol (LSP) support for code intelligence:
 
 - **Go to definition**: Find where symbols are defined
 - **Find references**: Find all usages of a symbol
 - **Hover documentation**: Get type info and docs
+- **Document symbols**: Get all symbols in a file
 - **Workspace symbols**: Search across the codebase
 - **Go to implementation**: Find implementations of interfaces
-- **Call hierarchy**: Find incoming/outgoing calls
+- **Call hierarchy**: Find incoming/outgoing calls (prepareCallHierarchy, incomingCalls, outgoingCalls)
 
-This works automatically with supported language servers.
+This works automatically with supported language servers. The LSP tool was added in v2.0.74 and provides rich code navigation capabilities.
 
 ## Claude in Chrome (Beta)
 

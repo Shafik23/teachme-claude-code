@@ -265,11 +265,14 @@ Use wildcards for MCP tool permissions:
     "allow": [
       "mcp__github",
       "mcp__github__*",
+      "mcp__server__*",
       "mcp__linear__get_issue"
     ]
   }
 }
 ```
+
+The `mcp__server__*` wildcard syntax allows or denies all tools from a specific MCP server.
 
 ## Complete Example
 

@@ -220,7 +220,7 @@ Hook configuration:
 
 ## Hook Input Format
 
-Hooks receive JSON on stdin with context about the event:
+Hooks receive JSON on stdin with context about the event. The environment variable `$CLAUDE_TOOL_OUTPUT` contains the output from the tool's execution (only for the PostToolUse event).
 
 ### PreToolUse / PostToolUse
 

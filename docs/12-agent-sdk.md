@@ -48,10 +48,12 @@ npm install @anthropic-ai/claude-agent-sdk
 export ANTHROPIC_API_KEY=your-api-key
 ```
 
-Also supports:
+Also supports third-party API providers:
 - **Amazon Bedrock**: `CLAUDE_CODE_USE_BEDROCK=1`
 - **Google Vertex AI**: `CLAUDE_CODE_USE_VERTEX=1`
 - **Microsoft Foundry**: `CLAUDE_CODE_USE_FOUNDRY=1`
+
+The Python SDK automatically bundles the Claude Code CLI—no separate installation required.
 
 ## Quick Start
 

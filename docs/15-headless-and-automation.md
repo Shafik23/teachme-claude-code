@@ -242,6 +242,12 @@ claude --disable-slash-commands
 
 # Set max budget
 claude --max-budget-usd 10.00
+
+# Custom session ID
+claude --session-id my-session --resume
+
+# Fork a session
+claude --resume abc123 --fork-session --session-id new-session
 ```
 
 ## Error Handling

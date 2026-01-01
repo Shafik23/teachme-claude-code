@@ -128,12 +128,17 @@ claude --resume
 # Resume by session ID
 claude --resume abc123
 
+# Resume by number (e.g., most recent)
+claude --resume 1
+
 # Resume named session (use /rename to name sessions)
 claude --resume my-feature-work
 
 # Fork a session with custom ID
 claude --resume abc123 --fork-session --session-id new-session-id
 ```
+
+The `/resume` screen shows sessions grouped by branch with search, preview (P), and rename (R) shortcuts.
 
 ### Continue Last Session
 

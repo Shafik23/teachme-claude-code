@@ -29,6 +29,7 @@ Or install from: [VS Code Marketplace](https://marketplace.visualstudio.com/item
 | **Secondary Sidebar** | Display Claude Code in the right sidebar (VS Code 1.97+) |
 | **Drag and Drop** | Drag files and folders directly into chat |
 | **Copy Code Button** | Copy code blocks and bash tool inputs easily |
+| **Clickable Image Links** | `[Image #N]` links open attached images in the default viewer |
 
 ### Keyboard Shortcuts
 

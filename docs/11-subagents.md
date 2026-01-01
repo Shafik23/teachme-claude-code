@@ -69,6 +69,8 @@ Provide feedback with file:line references.
 | `model` | No | Override model for this agent |
 | `permissionMode` | No | Permission mode for the agent |
 
+Note: Subagents can run in the background while you continue working on other tasks.
+
 ## Example Subagents
 
 ### Documentation Writer

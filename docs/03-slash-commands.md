@@ -24,7 +24,7 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | `/privacy-settings` | View and update privacy settings |
 | `/statusline` | Configure status line display |
 | `/output-style [style]` | Set output style (Concise, Normal, Explanatory) |
-| `/theme` | Open theme picker (Ctrl+T to toggle syntax highlighting) |
+| `/theme` | Open theme picker (Ctrl+T to toggle syntax highlighting on/off) |
 
 ## Context Management
 
@@ -80,7 +80,7 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | `/vim` | Enter vim mode for editing |
 | `/sandbox` | Enable sandboxed bash tool with filesystem and network isolation |
 | `/bashes` | List and manage background shell tasks |
-| `/terminal-setup` | Install Shift+Enter key binding for multiline input (iTerm2, VSCode, Kitty, Alacritty, Zed, Warp, WezTerm) |
+| `/terminal-setup` | Install Shift+Enter key binding for multiline input (iTerm2, VSCode, Kitty, Alacritty, Zed, Warp, WezTerm, and more) |
 | `/security-review` | Security review of pending changes |
 
 ## Account
