@@ -11,6 +11,7 @@ Claude Code includes several built-in subagents:
 | **Explore** | Codebase exploration (powered by Haiku) | Finding files, understanding structure efficiently |
 | **Plan** | Architecture planning | Designing implementation approaches |
 | **Verify** | Verification tasks | Checking work, validating changes |
+| **claude-code-guide** | Documentation lookup | Answering questions about Claude Code features |
 
 Claude can dynamically choose the model used by subagents and can resume subagents when needed for follow-up work.
 

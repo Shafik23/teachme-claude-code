@@ -248,6 +248,12 @@ claude --session-id my-session --resume
 
 # Fork a session
 claude --resume abc123 --fork-session --session-id new-session
+
+# Define custom subagents via JSON
+claude --agents '{"analyzer": {"prompt": "You analyze code", "tools": ["Read", "Grep"]}}'
+
+# Output format for scripting
+claude -p "Analyze this" --output-format json
 ```
 
 ## Error Handling

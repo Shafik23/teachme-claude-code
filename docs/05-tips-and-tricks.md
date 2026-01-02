@@ -26,8 +26,10 @@
 | `Ctrl+Y` | Yank (paste) deleted text |
 | `Alt+Y` | Yank-pop (cycle through kill ring after Ctrl+Y) |
 | `Ctrl+T` | Toggle syntax highlighting (in `/theme`) |
-| `Ctrl+R` | Search command history |
+| `Ctrl+R` | Search command history (searchable prompt history) |
 | `Ctrl+S` | Copy stats screenshot to clipboard |
+| `Alt+←/→` | Word-by-word navigation |
+| `Ctrl+K` | Delete from cursor to end of line |
 | `?` | Show all available shortcuts |
 
 ### Image Handling
@@ -193,8 +195,8 @@ Enable with `/vim` for powerful text editing:
 ### Use the Right Model
 
 - **Claude Opus 4.5** - Complex reasoning, architecture decisions, highest capability (available for Pro users)
-- **Claude Sonnet 4.5** - Balanced speed and capability (default)
-- **Claude Haiku 4.5** - Quick tasks, simple edits, fastest response (uses Sonnet in plan mode)
+- **Claude Sonnet 4** - Balanced speed and capability (default)
+- **Claude Haiku 3.5** - Quick tasks, simple edits, fastest response (uses Sonnet in plan mode)
 
 Switch mid-session:
 ```

@@ -30,6 +30,7 @@ Or install from: [VS Code Marketplace](https://marketplace.visualstudio.com/item
 | **Drag and Drop** | Drag files and folders directly into chat |
 | **Copy Code Button** | Copy code blocks and bash tool inputs easily |
 | **Clickable Image Links** | `[Image #N]` links open attached images in the default viewer |
+| **Thinking Toggle** | Enable/disable extended thinking in IDE |
 
 ### Keyboard Shortcuts
 
@@ -65,6 +66,7 @@ Access via `Preferences > Settings > Claude Code`:
 | Respect .gitignore | Include .gitignored files in file searches |
 | Chat Font Size/Family | Customize chat appearance |
 | Enable Thinking Toggle | Toggle to enable/disable thinking in IDE |
+| Agent Setting | Configure custom agent for IDE sessions |
 
 ### Tips
 

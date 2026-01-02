@@ -51,7 +51,7 @@ export ANTHROPIC_API_KEY=your-api-key
 Also supports third-party API providers:
 - **Amazon Bedrock**: `CLAUDE_CODE_USE_BEDROCK=1`
 - **Google Vertex AI**: `CLAUDE_CODE_USE_VERTEX=1`
-- **Microsoft Foundry**: `CLAUDE_CODE_USE_FOUNDRY=1`
+- **Microsoft Azure Foundry**: `CLAUDE_CODE_USE_FOUNDRY=1`
 
 The Python SDK automatically bundles the Claude Code CLI—no separate installation required.
 
@@ -63,6 +63,8 @@ The Python SDK provides two main APIs:
 
 1. **`query()`** - Simple text generation (no tools)
 2. **`ClaudeSDKClient`** - Full agentic API with tools, sessions, and hooks
+
+Note: The SDK no longer reads from filesystem settings (CLAUDE.md, settings.json, slash commands, etc.) by default. Use `setting_sources=["project"]` to load project configurations.
 
 ```python
 import asyncio

@@ -11,10 +11,11 @@ Hooks are user-defined shell commands that execute at various lifecycle points, 
 | `PermissionRequest` | When permission dialog appears | Auto-approve/deny based on rules, process 'always allow' suggestions |
 | `UserPromptSubmit` | When user submits a prompt | Add context, validate input |
 | `Notification` | When Claude sends notification | Custom notification handling |
-| `Stop` | When Claude finishes responding | Post-response actions |
+| `Stop` | When Claude finishes responding | Post-response actions, quality gates |
 | `SubagentStart` | When a subagent begins | Initialize subagent context |
 | `SubagentStop` | When a subagent completes | Handle subagent results (includes agent_id and agent_transcript_path) |
 | `PreCompact` | Before conversation compaction | Pre-compaction logic |
+| `PostCompact` | After conversation compaction | Post-compaction actions |
 | `SessionStart` | When session begins | Initialize environment, set env vars |
 | `SessionEnd` | When session ends | Cleanup actions, logging session statistics |
 
@@ -341,6 +342,7 @@ Hooks have access to special environment variables:
 | `CLAUDE_PROJECT_DIR` | Absolute path to project root |
 | `CLAUDE_ENV_FILE` | (SessionStart only) File to persist env vars |
 | `CLAUDE_CODE_REMOTE` | `"true"` if running in remote/web environment |
+| `CLAUDE_TOOL_OUTPUT` | (PostToolUse only) The output from the tool's execution |
 
 ### Persisting Environment Variables (SessionStart)
 

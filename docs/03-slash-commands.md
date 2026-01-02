@@ -66,12 +66,13 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | Command | Description |
 |---------|-------------|
 | `/cost` | Show token usage statistics for current session |
-| `/stats` | Visualize daily usage, streaks, and favorite model |
+| `/stats` | Visualize daily usage, streaks, and favorite model (Ctrl+S to copy screenshot) |
 | `/status` | Show version, model, account, and connectivity info |
 | `/usage` | Show plan usage limits and rate limit status |
 | `/doctor` | Check installation health and diagnose issues |
 | `/bug` | Report bugs to Anthropic |
 | `/release-notes` | View release notes for current version |
+| `/tasks` | List and manage background tasks (shells, agents, remote sessions) |
 
 ## Advanced
 
@@ -80,8 +81,9 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | `/vim` | Enter vim mode for editing |
 | `/sandbox` | Enable sandboxed bash tool with filesystem and network isolation |
 | `/bashes` | List and manage background shell tasks |
-| `/terminal-setup` | Install Shift+Enter key binding for multiline input (iTerm2, VSCode, Kitty, Alacritty, Zed, Warp, WezTerm, and more) |
+| `/terminal-setup` | Install Shift+Enter key binding for multiline input (iTerm2, VSCode, Kitty, Alacritty, Zed, Warp, WezTerm, Ghostty, and more) |
 | `/security-review` | Security review of pending changes |
+| `/browser` | Manage Claude in Chrome browser integration (Beta) |
 
 ## Account
 

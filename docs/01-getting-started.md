@@ -27,7 +27,13 @@ irm https://claude.ai/install.ps1 | iex
 curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
 
-### Option 4: npm (Cross-platform)
+### Option 4: Winget (Windows)
+
+```bash
+winget install Anthropic.ClaudeCode
+```
+
+### Option 5: npm (Cross-platform)
 
 Requires Node.js 18+:
 
@@ -136,6 +142,9 @@ claude --resume my-feature-work
 
 # Fork a session with custom ID
 claude --resume abc123 --fork-session --session-id new-session-id
+
+# Resume by timestamp (ISO format)
+claude --resume 2025-01-02T10:30:00
 ```
 
 The `/resume` screen shows sessions grouped by branch with search, preview (P), and rename (R) shortcuts.

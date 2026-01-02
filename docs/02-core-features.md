@@ -161,6 +161,18 @@ Claude can delegate specialized tasks:
 
 Claude can dynamically choose the model used by subagents and resume subagents when needed. The Explore subagent (powered by Haiku) efficiently searches through your codebase to save context. Background agents can run in parallel while you continue working on other tasks.
 
+## LSP Integration
+
+Claude Code includes Language Server Protocol (LSP) support for code intelligence:
+
+- **Go to definition**: Find where symbols are defined
+- **Find references**: Find all usages of a symbol
+- **Hover documentation**: Get type info and docs
+- **Document symbols**: Get all symbols in a file
+- **Workspace symbols**: Search across the codebase
+- **Go to implementation**: Find implementations of interfaces
+- **Call hierarchy**: Find incoming/outgoing calls
+
 ## Web Capabilities
 
 ### Search

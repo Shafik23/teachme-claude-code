@@ -5,11 +5,13 @@ MCP enables Claude Code to connect to external tools and data sources through th
 ## What You Can Do with MCP
 
 - **Issue Trackers**: Implement features from JIRA, Linear, GitHub Issues
-- **Monitoring**: Analyze data from Sentry, Datadog, Statsig
-- **Databases**: Query PostgreSQL, MySQL, MongoDB directly
-- **Design Tools**: Work with Figma designs and design systems
-- **Communication**: Automate Gmail, Slack workflows
+- **Monitoring**: Analyze data from Sentry, Datadog, Statsig, Honeycomb
+- **Databases**: Query PostgreSQL, MySQL, MongoDB, Snowflake, Databricks directly
+- **Design Tools**: Work with Figma, Canva designs and design systems
+- **Communication**: Automate Gmail, Slack, Intercom workflows
 - **Browser Control**: Control your browser with Claude in Chrome (Beta)
+- **Payments**: Integrate with Stripe, PayPal, Square
+- **Deployment**: Manage Vercel, Netlify, Cloudflare deployments
 - **Custom Tools**: Connect to your company's internal APIs
 
 ## Remote MCP Support
@@ -159,6 +161,8 @@ Syntax:
 | **Honeycomb** | `claude mcp add --transport http honeycomb https://mcp.honeycomb.io/mcp` |
 | **Intercom** | `claude mcp add --transport http intercom https://mcp.intercom.com/mcp` |
 | **Square** | `claude mcp add --transport sse square https://mcp.squareup.com/sse` |
+| **Asana** | `claude mcp add --transport sse asana https://mcp.asana.com/sse` |
+| **Ramp** | `claude mcp add --transport http ramp https://mcp.ramp.com/mcp` |
 
 ### Development & DevOps
 
@@ -295,6 +299,22 @@ Plugins can bundle MCP servers that start automatically when enabled:
 Plugin MCP servers use `${CLAUDE_PLUGIN_ROOT}` for relative paths.
 
 ---
+
+## Enterprise MCP Configuration
+
+For organizations needing centralized control over MCP servers, Claude Code supports two enterprise configuration options:
+
+1. **Exclusive control with `managed-mcp.json`**: Deploy a fixed set of MCP servers that users cannot modify
+2. **Policy-based control with allowlists/denylists**: Define which MCP servers are permitted or blocked
+
+## Docker MCP Toolkit
+
+Docker MCP Toolkit transforms Claude Code into an integrated development partner. You can explore 220+ MCP servers in the Docker MCP catalog:
+
+```bash
+# Add MCP servers via Docker MCP Toolkit
+docker mcp add-to-claude
+```
 
 ## Security Considerations
 
