@@ -9,6 +9,14 @@ You are updating the Claude Code educational documentation in this repository. F
 
 **CRITICAL: You MUST use ONLY the built-in `WebSearch` and `WebFetch` tools for web searches and fetching. DO NOT use any MCP tools like firecrawl, mcp__firecrawl-mcp__*, or any other MCP-based web scraping tools. Use ONLY the native Claude Code WebSearch and WebFetch tools.**
 
+**IMPORTANT: Only make changes if there are SIGNIFICANT updates from Anthropic's official documentation.** Do NOT make changes for:
+- Minor wording differences that don't change meaning
+- Features already documented (even if phrased differently)
+- Information that is essentially the same but formatted differently
+- Speculative features mentioned in blog posts but not in official docs
+
+If after research you find the documentation is already up-to-date, simply report "Documentation is current - no updates needed" and skip the commit step. Avoid unnecessary commits.
+
 ## Step 1: Search for Current Claude Code Information
 
 Use the built-in `WebSearch` tool (NOT firecrawl or any MCP tools) to search for the latest Claude Code features and documentation. Run these searches:
@@ -56,26 +64,27 @@ docs/16-background-tasks.md
 
 ## Step 4: Compare and Identify Updates
 
-Compare the fetched information against current documentation. Look for:
+Compare the fetched information against current documentation. **Be conservative** - only flag items that represent genuinely new or changed functionality, not minor variations.
 
-### New Features
-- New slash commands not documented
-- New hooks or hook events
-- New MCP servers or integrations
-- New configuration options
-- New CLI flags or arguments
-- New SDK capabilities
+### Criteria for Making Updates
 
-### Changed Features
-- Updated command syntax
-- Changed default behaviors
-- Modified configuration schemas
-- Updated hook signatures
+**DO update for:**
+- Entirely new slash commands not documented at all
+- New hooks or hook events with new names/functionality
+- New MCP server integrations not listed
+- New CLI flags or arguments with new functionality
+- Breaking changes to existing features
+- Deprecated/removed features that are still documented
 
-### Removed/Deprecated Features
-- Commands that no longer exist
-- Deprecated configuration options
-- Removed integrations
+**DO NOT update for:**
+- Features already covered (even if official docs phrase them differently)
+- Minor additions to existing feature descriptions
+- Third-party blog posts or tutorials (only use official Anthropic sources)
+- Features you're uncertain about
+
+### What Qualifies as Significant
+
+Ask yourself: "Would a user be missing important functionality if this isn't documented?" If the answer is no, skip it.
 
 ## Step 5: Apply Updates
 
@@ -110,9 +119,11 @@ For each update identified, edit the appropriate documentation file:
 4. **Add sources** - Include official documentation links where helpful
 5. **Keep practical** - Ensure examples are copy-pasteable
 
-## Step 6: Commit and Push to GitHub
+## Step 6: Commit and Push to GitHub (Only If Significant Changes)
 
-After making updates, commit and push the changes:
+**STOP HERE if you haven't made any significant changes.** Check `git status` first - if there are no changes or only trivial changes, do NOT commit. Report that documentation is current instead.
+
+After making **significant** updates, commit and push:
 
 1. **Check what changed**:
    ```bash
@@ -120,12 +131,16 @@ After making updates, commit and push the changes:
    git diff
    ```
 
-2. **Stage all documentation changes**:
+   **If `git status` shows no changes, STOP and report "Documentation is current - no updates needed"**
+
+2. **Review the diff** - Are these changes truly significant? If not, revert and skip the commit.
+
+3. **Stage documentation changes**:
    ```bash
    git add docs/ examples/ README.md
    ```
 
-3. **Create a descriptive commit**:
+4. **Create a descriptive commit**:
    ```bash
    git commit -m "docs: auto-update documentation with latest Claude Code features
 
@@ -137,12 +152,10 @@ After making updates, commit and push the changes:
    Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
    ```
 
-4. **Push to GitHub**:
+5. **Push to GitHub**:
    ```bash
    git push
    ```
-
-If there are no changes to commit, skip this step and note that documentation is already current.
 
 ## Step 7: Summary Report
 
@@ -173,8 +186,9 @@ After completing all steps, provide a summary:
 
 ## Important Notes
 
+- **Prefer no changes over unnecessary changes** - It's better to report "no updates needed" than to make trivial edits
 - Always verify information from official Anthropic sources before updating
-- If information conflicts between sources, prefer docs.anthropic.com
+- If information conflicts between sources, prefer docs.anthropic.com or code.claude.com
 - Do not remove documented features unless confirmed deprecated
 - For uncertain changes, note them in the summary for manual review
-- Only commit if actual changes were made to documentation
+- **Only commit if there are genuinely significant changes** - avoid commit noise
