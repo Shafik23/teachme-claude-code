@@ -20,6 +20,10 @@ Remote MCP servers offer a lower maintenance alternative to local servers. Just 
 
 Claude Code features native OAuth support for remote MCP servers, ensuring secure connections. Simply authenticate once, and Claude Code handles the rest.
 
+## Dynamic Tool Updates
+
+MCP servers can send `list_changed` notifications to dynamically update their tools, prompts, and resources without requiring reconnection. This allows servers to add or modify capabilities on-the-fly based on context.
+
 ## Installing MCP Servers
 
 ### HTTP Servers (Recommended)

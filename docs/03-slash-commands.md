@@ -74,11 +74,19 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | `/release-notes` | View release notes for current version |
 | `/tasks` | List and manage background tasks (shells, agents, remote sessions) |
 
+## Remote Sessions (Claude.ai Subscribers)
+
+| Command | Description |
+|---------|-------------|
+| `/teleport` | Resume a remote session from claude.ai in your terminal |
+| `/remote-env` | Configure remote environment settings |
+
 ## Advanced
 
 | Command | Description |
 |---------|-------------|
 | `/vim` | Enter vim mode for editing |
+| `/plan` | Enable plan mode directly (shortcut instead of Shift+Tab) |
 | `/sandbox` | Enable sandboxed bash tool with filesystem and network isolation |
 | `/bashes` | List and manage background shell tasks |
 | `/terminal-setup` | Install Shift+Enter key binding for multiline input (iTerm2, VSCode, Kitty, Alacritty, Zed, Warp, WezTerm, Ghostty, and more) |

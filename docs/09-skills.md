@@ -8,6 +8,8 @@ Skills are markdown-based files that teach Claude how to do something specific. 
 2. **Activation**: When your request semantically matches a Skill's description, Claude asks permission to use it
 3. **Execution**: Claude follows the Skill's instructions, loading referenced files as needed
 
+**Hot-Reload**: Skills created or modified in `~/.claude/skills` or `.claude/skills` are immediately available without restarting your session.
+
 ## Creating a Skill
 
 ### File Location
@@ -53,6 +55,8 @@ When explaining code, always:
 |-------|-------------|---------|
 | `allowed-tools` | Tools Claude can use without asking | `Read, Grep, Bash(npm:*)` |
 | `model` | Override the conversation model | `claude-sonnet-4-20250514` |
+| `context` | Run skill in forked sub-agent context | `fork` |
+| `agent` | Specify agent type for execution | `explore` |
 
 ## Example: Code Review Skill
 

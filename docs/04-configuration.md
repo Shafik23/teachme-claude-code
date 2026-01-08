@@ -52,6 +52,7 @@ Examples:
 {
   "allow": [
     "Bash(npm run:*)",        // npm run test, npm run build, etc.
+    "Bash(npm *)",            // npm install, npm update, etc. (wildcard patterns)
     "Bash(git:*)",            // All git commands
     "Edit(src/**)",           // Edit files in src/
     "Read(*.md)"              // Read markdown files
@@ -104,6 +105,26 @@ Set default output verbosity:
 ```
 
 Options: `"Concise"`, `"Normal"`, `"Explanatory"`
+
+### Response Language
+
+Configure Claude's response language:
+
+```json
+{
+  "language": "japanese"
+}
+```
+
+### Respect Gitignore
+
+Control whether the @-mention file picker respects `.gitignore`:
+
+```json
+{
+  "respectGitignore": true
+}
+```
 
 ### Sandbox Mode
 

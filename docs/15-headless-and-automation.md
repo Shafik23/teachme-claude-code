@@ -229,6 +229,9 @@ export CLAUDE_CODE_SHELL=/bin/zsh
 
 # Bash timeout
 export BASH_DEFAULT_TIMEOUT_MS=120000
+
+# Demo mode - hide email/org from UI (useful for streaming/recording)
+export IS_DEMO=true
 ```
 
 ## CLI Flags

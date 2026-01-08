@@ -165,9 +165,21 @@ Enable with `/vim` for powerful text editing:
 - `x` - Delete character
 - `dd` - Delete line
 - `cc` - Change line
-- `yy` - Yank (copy) line
-- `p` - Paste
+- `yy`/`Y` - Yank (copy) line
+- `p`/`P` - Paste after/before
 - `.` - Repeat last change
+- `>>` / `<<` - Indent/dedent line
+- `J` - Join lines
+
+### Text Objects & Motions
+- `iw`, `aw` - Inner/around word
+- `iW`, `aW` - Inner/around WORD
+- `i"`, `a"` - Inner/around double quotes
+- `i'`, `a'` - Inner/around single quotes
+- `i(`, `a(` - Inner/around parentheses
+- `i[`, `a[` - Inner/around brackets
+- `i{`, `a{` - Inner/around braces
+- `;` / `,` - Repeat/reverse f/F/t/T motion
 
 ## Context Management
 
@@ -216,7 +228,9 @@ Run long operations in background:
 > Run the full test suite in the background
 ```
 
-Or press `Ctrl+Z` to background a running command.
+Or use unified backgrounding:
+- `Ctrl+B` - Background both bash commands and agents simultaneously
+- `Ctrl+Z` - Background a running command
 
 Check background shell tasks:
 ```
