@@ -78,7 +78,7 @@ Add hooks to your `settings.json`:
 | `type` | `"command"` for bash commands, `"prompt"` for LLM evaluation |
 | `command` | The bash command to execute |
 | `prompt` | The prompt for LLM evaluation (for `type: "prompt"`) |
-| `timeout` | Max execution time in seconds (default: 60, max: 600) |
+| `timeout` | Max execution time in seconds (default: 600, max: 600) |
 | `once` | If `true`, hook only runs once per session |
 
 ### Matchers

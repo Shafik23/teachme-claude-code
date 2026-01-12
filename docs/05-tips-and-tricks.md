@@ -45,7 +45,7 @@
 |--------|-----|
 | Backslash | `\ + Enter` |
 | Option key (Mac) | `Option+Enter` |
-| After setup | `Shift+Enter` (run `/terminal-setup` first) |
+| Out-of-box | `Shift+Enter` (works in iTerm2, WezTerm, Ghostty, Kitty; run `/terminal-setup` for others) |
 | Control sequence | `Ctrl+J` |
 
 ## Quick Prefixes
