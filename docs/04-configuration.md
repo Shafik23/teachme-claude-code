@@ -295,6 +295,38 @@ Use wildcards for MCP tool permissions:
 
 The `mcp__server__*` wildcard syntax allows or denies all tools from a specific MCP server.
 
+## Agent Permissions
+
+Control which agents Claude can use with `Task(AgentName)` syntax:
+
+```json
+{
+  "permissions": {
+    "deny": [
+      "Task(code-reviewer)",
+      "Task(security-auditor)"
+    ]
+  }
+}
+```
+
+Or via CLI:
+```bash
+claude --disallowedTools "Task(code-reviewer)"
+```
+
+## Release Channel
+
+Switch between stable and latest release channels via `/config`:
+
+```json
+{
+  "releaseChannel": "stable"
+}
+```
+
+Options: `"stable"` (default), `"latest"`
+
 ## Complete Example
 
 ```json

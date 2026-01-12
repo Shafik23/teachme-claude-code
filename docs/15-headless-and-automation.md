@@ -232,6 +232,15 @@ export BASH_DEFAULT_TIMEOUT_MS=120000
 
 # Demo mode - hide email/org from UI (useful for streaming/recording)
 export IS_DEMO=true
+
+# Disable background tasks (auto-backgrounding and Ctrl+B)
+export CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=true
+
+# Override file read token limit
+export CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS=50000
+
+# Force plugin auto-update when main auto-updater is disabled
+export FORCE_AUTOUPDATE_PLUGINS=true
 ```
 
 ## CLI Flags
@@ -257,6 +266,9 @@ claude --agents '{"analyzer": {"prompt": "You analyze code", "tools": ["Read", "
 
 # Output format for scripting
 claude -p "Analyze this" --output-format json
+
+# Restrict which built-in tools Claude can use
+claude --tools "Read,Glob,Grep"
 ```
 
 ## Error Handling

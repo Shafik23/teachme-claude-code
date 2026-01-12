@@ -53,10 +53,23 @@ When explaining code, always:
 
 | Field | Description | Example |
 |-------|-------------|---------|
-| `allowed-tools` | Tools Claude can use without asking | `Read, Grep, Bash(npm:*)` |
+| `allowed-tools` | Tools Claude can use without asking (supports YAML-style lists) | `Read, Grep, Bash(npm:*)` |
 | `model` | Override the conversation model | `claude-sonnet-4-20250514` |
 | `context` | Run skill in forked sub-agent context | `fork` |
 | `agent` | Specify agent type for execution | `explore` |
+| `hooks` | Define hooks specific to this skill | See hooks documentation |
+
+**YAML-style allowed-tools:**
+```yaml
+---
+name: my-skill
+description: Example with YAML tools list
+allowed-tools:
+  - Read
+  - Grep
+  - Bash(npm:*)
+---
+```
 
 ## Example: Code Review Skill
 

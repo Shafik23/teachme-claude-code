@@ -60,7 +60,9 @@ Add hooks to your `settings.json`:
         "hooks": [
           {
             "type": "command",
-            "command": "your-command-here"
+            "command": "your-command-here",
+            "timeout": 60,
+            "once": true
           }
         ]
       }
@@ -68,6 +70,16 @@ Add hooks to your `settings.json`:
   }
 }
 ```
+
+### Hook Options
+
+| Option | Description |
+|--------|-------------|
+| `type` | `"command"` for bash commands, `"prompt"` for LLM evaluation |
+| `command` | The bash command to execute |
+| `prompt` | The prompt for LLM evaluation (for `type: "prompt"`) |
+| `timeout` | Max execution time in seconds (default: 60, max: 600) |
+| `once` | If `true`, hook only runs once per session |
 
 ### Matchers
 
@@ -343,6 +355,18 @@ Hooks have access to special environment variables:
 | `CLAUDE_ENV_FILE` | (SessionStart only) File to persist env vars |
 | `CLAUDE_CODE_REMOTE` | `"true"` if running in remote/web environment |
 | `CLAUDE_TOOL_OUTPUT` | (PostToolUse only) The output from the tool's execution |
+
+### SessionStart Hook Input
+
+The SessionStart hook receives JSON input with:
+
+```json
+{
+  "agent_type": "my-agent"
+}
+```
+
+The `agent_type` field is populated if `--agent` was specified on the command line.
 
 ### Persisting Environment Variables (SessionStart)
 
