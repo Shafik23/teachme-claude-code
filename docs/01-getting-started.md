@@ -41,6 +41,16 @@ Requires Node.js 18+:
 npm install -g @anthropic-ai/claude-code
 ```
 
+### Option 6: Desktop App
+
+Download the native desktop application from:
+
+```
+https://claude.com/download
+```
+
+Available for macOS and Windows.
+
 ## First Launch
 
 After installation, start Claude Code:

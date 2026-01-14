@@ -236,6 +236,9 @@ export IS_DEMO=true
 # Disable background tasks (auto-backgrounding and Ctrl+B)
 export CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=true
 
+# Override temp directory for internal temp files
+export CLAUDE_CODE_TMPDIR=/custom/tmp/path
+
 # Override file read token limit
 export CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS=50000
 

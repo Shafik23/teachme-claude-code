@@ -66,10 +66,10 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | Command | Description |
 |---------|-------------|
 | `/cost` | Show token usage statistics for current session |
-| `/stats` | Visualize daily usage, streaks, and favorite model (Ctrl+S to copy screenshot) |
+| `/stats` | Visualize daily usage, streaks, and favorite model (Ctrl+S to copy screenshot, `r` to cycle date ranges) |
 | `/status` | Show version, model, account, and connectivity info |
 | `/usage` | Show plan usage limits and rate limit status |
-| `/doctor` | Check installation health and diagnose issues |
+| `/doctor` | Check installation health, diagnose issues, and view update channel info |
 | `/bug` | Report bugs to Anthropic |
 | `/release-notes` | View release notes for current version |
 | `/tasks` | List and manage background tasks (shells, agents, remote sessions) |
