@@ -206,9 +206,9 @@ Enable with `/vim` for powerful text editing:
 
 ### Use the Right Model
 
-- **Claude Opus 4.5** - Complex reasoning, architecture decisions, highest capability (available for Pro users)
-- **Claude Sonnet 4** - Balanced speed and capability (default)
-- **Claude Haiku 3.5** - Quick tasks, simple edits, fastest response (uses Sonnet in plan mode)
+- **Claude Opus 4.6** - Complex reasoning, architecture decisions, highest capability (available for Pro users)
+- **Claude Sonnet 4.6** - Balanced speed and capability (default, 1M context on Max plan)
+- **Claude Haiku 4.5** - Quick tasks, simple edits, fastest response (uses Sonnet in plan mode)
 
 Switch mid-session:
 ```

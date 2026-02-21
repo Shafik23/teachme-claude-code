@@ -33,23 +33,16 @@ curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del in
 winget install Anthropic.ClaudeCode
 ```
 
-### Option 5: npm (Cross-platform)
+### Option 5: Desktop App
 
-Requires Node.js 18+:
+A standalone app for running Claude Code outside your IDE or terminal. Review diffs visually and run multiple sessions side by side.
 
-```bash
-npm install -g @anthropic-ai/claude-code
-```
+- [macOS](https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect) (Intel and Apple Silicon)
+- [Windows x64](https://claude.ai/api/desktop/win32/x64/exe/latest/redirect)
 
-### Option 6: Desktop App
+### Option 6: Web (No Install Required)
 
-Download the native desktop application from:
-
-```
-https://claude.com/download
-```
-
-Available for macOS and Windows.
+Run Claude Code in your browser at [claude.ai/code](https://claude.ai/code). Kick off long-running tasks and check back when they're done, or work on repos you don't have locally.
 
 ## First Launch
 

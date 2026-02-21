@@ -36,10 +36,12 @@ claude mcp add --transport http notion https://mcp.notion.com/mcp
 claude mcp add --transport http sentry https://mcp.sentry.dev/mcp
 
 # GitHub
-claude mcp add --transport http github https://mcp.github.com/mcp
+claude mcp add --transport http github https://api.githubcopilot.com/mcp/
 ```
 
-### SSE Servers
+### SSE Servers (Deprecated)
+
+> **Note**: The SSE transport is deprecated. Use HTTP servers instead, where available.
 
 ```bash
 claude mcp add --transport sse asana https://mcp.asana.com/sse
@@ -82,21 +84,21 @@ claude mcp remove github
 Private to you in current project. Stored in project's `.claude.json`.
 
 ```bash
-claude mcp add github https://mcp.github.com/mcp
+claude mcp add github https://api.githubcopilot.com/mcp/
 ```
 
 ### Project Scope
 Shared with team via `.mcp.json` (commit to git).
 
 ```bash
-claude mcp add --scope project github https://mcp.github.com/mcp
+claude mcp add --scope project github https://api.githubcopilot.com/mcp/
 ```
 
 ### User Scope
 Available across all your projects. Stored in `~/.claude.json`.
 
 ```bash
-claude mcp add --scope user github https://mcp.github.com/mcp
+claude mcp add --scope user github https://api.githubcopilot.com/mcp/
 ```
 
 ## Configuration Files
@@ -108,7 +110,7 @@ claude mcp add --scope user github https://mcp.github.com/mcp
   "mcpServers": {
     "github": {
       "type": "http",
-      "url": "https://mcp.github.com/mcp"
+      "url": "https://api.githubcopilot.com/mcp/"
     },
     "database": {
       "type": "stdio",
@@ -232,6 +234,43 @@ Once configured, Claude automatically has access to MCP tools:
 
 > Send a Slack message to #engineering about the deployment
 ```
+
+## MCP Tool Search
+
+When you have many MCP servers, tool definitions can consume a significant portion of your context window. MCP Tool Search solves this by dynamically loading tools on-demand instead of preloading all of them.
+
+Claude Code automatically enables Tool Search when MCP tool descriptions exceed 10% of the context window. When triggered, MCP tools are deferred rather than loaded upfront, and Claude uses a search tool to discover relevant MCP tools when needed.
+
+Control via the `ENABLE_TOOL_SEARCH` environment variable:
+
+| Value | Behavior |
+|-------|----------|
+| `auto` | Activates at 10% context threshold (default) |
+| `auto:<N>` | Custom threshold (e.g., `auto:5` for 5%) |
+| `true` | Always enabled |
+| `false` | Disabled, all tools loaded upfront |
+
+```bash
+# Custom 5% threshold
+ENABLE_TOOL_SEARCH=auto:5 claude
+
+# Disable entirely
+ENABLE_TOOL_SEARCH=false claude
+```
+
+> Requires Sonnet 4+ or Opus 4+. Haiku models do not support Tool Search.
+
+## OAuth with Pre-Configured Credentials
+
+Some MCP servers don't support automatic OAuth setup. Register an OAuth app through the server's developer portal first, then provide credentials:
+
+```bash
+claude mcp add --transport http \
+  --client-id your-client-id --client-secret --callback-port 8080 \
+  my-server https://mcp.example.com/mcp
+```
+
+The `--client-secret` flag prompts for the secret with masked input. For CI, set `MCP_CLIENT_SECRET` as an environment variable.
 
 ## Troubleshooting
 

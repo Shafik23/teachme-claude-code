@@ -1,6 +1,6 @@
 # Hooks
 
-Hooks are user-defined shell commands that execute at various lifecycle points, allowing you to customize and extend Claude Code's behavior.
+Hooks are user-defined shell commands, LLM prompts, or subagents that execute at specific points in Claude Code's lifecycle. They provide deterministic control over Claude Code's behavior, ensuring certain actions always happen rather than relying on the LLM to choose to run them.
 
 ## Hook Events
 
@@ -8,15 +8,20 @@ Hooks are user-defined shell commands that execute at various lifecycle points, 
 |-------|--------------|-------------|
 | `PreToolUse` | Before a tool executes | Block dangerous commands, validate inputs, modify tool input |
 | `PostToolUse` | After a tool executes | Auto-format, logging, notifications |
+| `PostToolUseFailure` | After a tool call fails | Error handling, retry logic |
 | `PermissionRequest` | When permission dialog appears | Auto-approve/deny based on rules, process 'always allow' suggestions |
 | `UserPromptSubmit` | When user submits a prompt | Add context, validate input |
 | `Notification` | When Claude sends notification | Custom notification handling |
 | `Stop` | When Claude finishes responding | Post-response actions, quality gates |
 | `SubagentStart` | When a subagent begins | Initialize subagent context |
 | `SubagentStop` | When a subagent completes | Handle subagent results (includes agent_id and agent_transcript_path) |
+| `TeammateIdle` | When an agent team teammate goes idle | Coordinate team workflows |
+| `TaskCompleted` | When a task is marked as completed | Post-completion actions |
+| `ConfigChange` | When a config file changes during session | Audit, block unauthorized changes |
+| `WorktreeCreate` | When a worktree is created | Custom VCS worktree behavior |
+| `WorktreeRemove` | When a worktree is removed | Worktree cleanup |
 | `PreCompact` | Before conversation compaction | Pre-compaction logic |
-| `PostCompact` | After conversation compaction | Post-compaction actions |
-| `SessionStart` | When session begins | Initialize environment, set env vars |
+| `SessionStart` | When session begins or resumes | Initialize environment, set env vars |
 | `SessionEnd` | When session ends | Cleanup actions, logging session statistics |
 
 ### Notification Matchers
@@ -75,9 +80,10 @@ Add hooks to your `settings.json`:
 
 | Option | Description |
 |--------|-------------|
-| `type` | `"command"` for bash commands, `"prompt"` for LLM evaluation |
-| `command` | The bash command to execute |
-| `prompt` | The prompt for LLM evaluation (for `type: "prompt"`) |
+| `type` | `"command"` for bash commands, `"prompt"` for LLM evaluation, `"agent"` for multi-turn subagent verification |
+| `command` | The bash command to execute (for `type: "command"`) |
+| `prompt` | The prompt for LLM evaluation (for `type: "prompt"` or `type: "agent"`) |
+| `model` | Override model for prompt/agent hooks (default: Haiku) |
 | `timeout` | Max execution time in seconds (default: 600, max: 600) |
 | `once` | If `true`, hook only runs once per session |
 
@@ -333,7 +339,31 @@ Use an LLM (Haiku) to evaluate hooks with context-aware decisions:
 }
 ```
 
-Prompt-based hooks work especially well with `Stop` and `SubagentStop` events for intelligent, context-aware decisions about whether Claude should continue working. Use `$ARGUMENTS` as a placeholder for the hook input JSON.
+Prompt-based hooks work especially well with `Stop` and `SubagentStop` events for intelligent, context-aware decisions about whether Claude should continue working. Use `$ARGUMENTS` as a placeholder for the hook input JSON. You can specify a different model with the `model` field if you need more capability than the default (Haiku).
+
+## Agent-Based Hooks
+
+When verification requires inspecting files or running commands, use `type: "agent"` hooks. Unlike prompt hooks which make a single LLM call, agent hooks spawn a subagent that can read files, search code, and use other tools to verify conditions before returning a decision.
+
+```json
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "Verify that all unit tests pass. Run the test suite and check the results. $ARGUMENTS",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Agent hooks use the same `"ok"` / `"reason"` response format as prompt hooks, but with a longer default timeout of 60 seconds and up to 50 tool-use turns. Use prompt hooks when the hook input data alone is enough to make a decision. Use agent hooks when you need to verify something against the actual state of the codebase.
 
 ## Managing Hooks
 

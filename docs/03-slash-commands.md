@@ -2,6 +2,8 @@
 
 Slash commands control Claude Code behavior. Type `/` to see available commands.
 
+> **Note**: Custom slash commands have been merged into the [Skills](./09-skills.md) system. Files in `.claude/commands/` still work, but `.claude/skills/` is now the recommended location for new commands. Skills support additional features like directories with supporting files, invocation control, and subagent execution.
+
 ## Navigation & Session
 
 | Command | Description |
@@ -79,6 +81,7 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | Command | Description |
 |---------|-------------|
 | `/teleport` | Resume a remote session from claude.ai in your terminal |
+| `/desktop` | Hand off terminal session to the Desktop app for visual diff review |
 | `/remote-env` | Configure remote environment settings |
 
 ## Advanced
@@ -246,11 +249,13 @@ To prevent Claude from executing slash commands via the tool:
 
 ---
 
-## Skills vs Slash Commands
+## Skills vs Legacy Commands
 
-| Aspect | Slash Commands | Skills |
+> Commands and skills have been unified. Both create `/command-name` entries and support the same frontmatter. Skills are the recommended approach for new work.
+
+| Aspect | Legacy Commands (`.claude/commands/`) | Skills (`.claude/skills/`) |
 |--------|----------------|--------|
-| **Invocation** | Explicit (`/command`) | Automatic (Claude decides) |
-| **Discovery** | User types `/` | Semantic matching |
-| **Best for** | Quick actions, frequent tasks | Complex workflows, domain expertise |
-| **Structure** | Single .md file | Directory with SKILL.md + resources |
+| **Invocation** | Explicit (`/command`) or Claude-invoked | Explicit (`/skill-name`) or Claude-invoked |
+| **Supporting files** | Single .md file | Directory with SKILL.md + templates, scripts, examples |
+| **Invocation control** | `disable-model-invocation` | `disable-model-invocation` + `user-invocable` |
+| **Subagent execution** | Not supported | `context: fork` with agent selection |

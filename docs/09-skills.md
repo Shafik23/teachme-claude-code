@@ -1,12 +1,17 @@
 # Skills
 
-Skills are markdown-based files that teach Claude how to do something specific. Unlike slash commands that you invoke explicitly, Skills are **model-invoked** — Claude automatically uses them when your request matches the Skill's description.
+Skills extend what Claude can do. Create a `SKILL.md` file with instructions, and Claude adds it to its toolkit. Claude uses skills when relevant, or you can invoke one directly with `/skill-name`.
+
+> **Custom slash commands have been merged into skills.** A file at `.claude/commands/review.md` and a skill at `.claude/skills/review/SKILL.md` both create `/review` and work the same way. Your existing `.claude/commands/` files keep working. Skills add optional features: a directory for supporting files, frontmatter to control invocation, and the ability for Claude to load them automatically when relevant.
+
+Skills follow the [Agent Skills](https://agentskills.io) open standard, which works across multiple AI tools.
 
 ## How Skills Work
 
-1. **Discovery**: Claude loads only the name and description of available Skills at startup
-2. **Activation**: When your request semantically matches a Skill's description, Claude asks permission to use it
+1. **Discovery**: Claude loads only the name and description of available Skills at startup (descriptions are always in context)
+2. **Activation**: When your request semantically matches a Skill's description, Claude loads the full skill content
 3. **Execution**: Claude follows the Skill's instructions, loading referenced files as needed
+4. **Direct invocation**: You can also invoke any user-invocable skill with `/skill-name`
 
 **Hot-Reload**: Skills created or modified in `~/.claude/skills` or `.claude/skills` are immediately available without restarting your session.
 
@@ -42,22 +47,22 @@ When explaining code, always:
 4. **Highlight gotchas** - Note common mistakes or misconceptions
 ```
 
-### Required Frontmatter
+### Frontmatter Reference
 
-| Field | Description | Constraints |
-|-------|-------------|-------------|
-| `name` | Unique identifier | Lowercase, hyphens, max 64 chars |
-| `description` | What it does and when to use it | Max 1024 chars |
+All fields are optional. Only `description` is recommended so Claude knows when to use the skill.
 
-### Optional Frontmatter
-
-| Field | Description | Example |
-|-------|-------------|---------|
-| `allowed-tools` | Tools Claude can use without asking (supports YAML-style lists) | `Read, Grep, Bash(npm:*)` |
-| `model` | Override the conversation model | `claude-sonnet-4-20250514` |
-| `context` | Run skill in forked sub-agent context | `fork` |
-| `agent` | Specify agent type for execution | `explore` |
-| `hooks` | Define hooks specific to this skill | See hooks documentation |
+| Field | Required | Description |
+|-------|----------|-------------|
+| `name` | No | Display name for the skill. If omitted, uses the directory name. Lowercase, hyphens, max 64 chars |
+| `description` | Recommended | What the skill does and when to use it. Claude uses this to decide when to apply the skill |
+| `argument-hint` | No | Hint shown during autocomplete (e.g., `[issue-number]`) |
+| `disable-model-invocation` | No | Set to `true` to prevent Claude from auto-loading. Users must invoke manually with `/name` |
+| `user-invocable` | No | Set to `false` to hide from the `/` menu. Use for background knowledge only |
+| `allowed-tools` | No | Tools Claude can use without asking (supports YAML-style lists) |
+| `model` | No | Override the conversation model |
+| `context` | No | Set to `fork` to run in a forked subagent context |
+| `agent` | No | Which subagent type to use when `context: fork` is set (e.g., `Explore`, `Plan`) |
+| `hooks` | No | Hooks scoped to this skill's lifecycle |
 
 **YAML-style allowed-tools:**
 ```yaml
@@ -70,6 +75,44 @@ allowed-tools:
   - Bash(npm:*)
 ---
 ```
+
+### String Substitutions
+
+Skills support dynamic values:
+
+| Variable | Description |
+|----------|-------------|
+| `$ARGUMENTS` | All arguments passed when invoking the skill |
+| `$ARGUMENTS[N]` | Access a specific argument by 0-based index |
+| `$N` | Shorthand for `$ARGUMENTS[N]` (e.g., `$0`, `$1`) |
+| `${CLAUDE_SESSION_ID}` | The current session ID |
+
+### Dynamic Context Injection
+
+The `` !`command` `` syntax runs shell commands before the skill content is sent to Claude:
+
+```yaml
+---
+name: pr-summary
+description: Summarize changes in a pull request
+context: fork
+agent: Explore
+---
+
+## Pull request context
+- PR diff: !`gh pr diff`
+- Changed files: !`gh pr diff --name-only`
+
+Summarize this pull request...
+```
+
+### Controlling Invocation
+
+| Frontmatter | You can invoke | Claude can invoke |
+|:--|:--|:--|
+| (default) | Yes | Yes |
+| `disable-model-invocation: true` | Yes | No |
+| `user-invocable: false` | No | Yes |
 
 ## Example: Code Review Skill
 
@@ -265,14 +308,16 @@ npm test -- --testPathPattern="new-test-file"
 ```
 ```
 
-## Skills vs Slash Commands
+## Skills vs Legacy Slash Commands
 
-| Aspect | Skills | Slash Commands |
+> Slash commands have been merged into skills. Both `.claude/commands/` and `.claude/skills/` now create the same result. Skills are recommended for new work since they support directories with supporting files.
+
+| Aspect | Skills | Legacy Commands (`.claude/commands/`) |
 |--------|--------|----------------|
-| Invocation | Automatic (Claude decides) | Explicit (`/command`) |
-| Discovery | Semantic matching | User types `/` |
-| Best for | Complex workflows, domain expertise | Quick actions, frequent tasks |
-| Context | Can load multiple files | Single markdown file |
+| Location | `.claude/skills/<name>/SKILL.md` | `.claude/commands/<name>.md` |
+| Supporting files | Directory with templates, scripts, etc. | Single markdown file only |
+| Invocation control | `disable-model-invocation`, `user-invocable` | `disable-model-invocation` only |
+| Dynamic context | `` !`command` `` syntax | `` !`command` `` syntax |
 
 ## Ready-to-Use Examples
 
