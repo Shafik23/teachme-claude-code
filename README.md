@@ -63,6 +63,7 @@ claude
 | [14-checkpoints-and-rewind.md](./docs/14-checkpoints-and-rewind.md) | Undo changes with automatic checkpoints |
 | [15-headless-and-automation.md](./docs/15-headless-and-automation.md) | CI/CD integration and scripting |
 | [16-background-tasks.md](./docs/16-background-tasks.md) | Run long operations in background |
+| [17-git-worktrees.md](./docs/17-git-worktrees.md) | Parallel work with git worktree isolation |
 
 ### Examples
 | File | Description |

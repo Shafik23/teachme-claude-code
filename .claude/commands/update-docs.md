@@ -21,7 +21,7 @@ If after research you find the documentation is already up-to-date, simply repor
 
 Use the built-in `WebSearch` tool (NOT firecrawl or any MCP tools) to search for the latest Claude Code features and documentation. Run these searches:
 
-1. Search: "Claude Code CLI features 2025"
+1. Search: "Claude Code CLI features" (add the current year to the query)
 2. Search: "Claude Code slash commands reference"
 3. Search: "Claude Code MCP servers integrations"
 4. Search: "Claude Code hooks PreToolUse PostToolUse"
@@ -41,26 +41,7 @@ Use the built-in `WebFetch` tool (NOT firecrawl or any MCP tools) to fetch conte
 
 ## Step 3: Read Current Documentation
 
-Read all documentation files in this repository to understand what's currently documented:
-
-```
-docs/01-getting-started.md
-docs/02-core-features.md
-docs/03-slash-commands.md
-docs/04-configuration.md
-docs/05-tips-and-tricks.md
-docs/06-mcp-servers.md
-docs/07-hooks.md
-docs/08-ide-integrations.md
-docs/09-skills.md
-docs/10-plugins.md
-docs/11-subagents.md
-docs/12-agent-sdk.md
-docs/13-best-practices.md
-docs/14-checkpoints-and-rewind.md
-docs/15-headless-and-automation.md
-docs/16-background-tasks.md
-```
+Use Glob to find all `docs/*.md` files, then read every file found. This ensures newly added documentation is always included without needing to update this list.
 
 ## Step 4: Compare and Identify Updates
 
@@ -90,26 +71,9 @@ Ask yourself: "Would a user be missing important functionality if this isn't doc
 
 For each update identified, edit the appropriate documentation file:
 
-### Mapping of Topics to Files
+### Mapping Updates to Files
 
-| Topic | File |
-|-------|------|
-| Installation, first run | docs/01-getting-started.md |
-| File operations, git, testing, web | docs/02-core-features.md |
-| Slash commands | docs/03-slash-commands.md |
-| Settings, permissions, CLAUDE.md | docs/04-configuration.md |
-| Keyboard shortcuts, vim mode | docs/05-tips-and-tricks.md |
-| MCP servers, integrations | docs/06-mcp-servers.md |
-| Hooks system | docs/07-hooks.md |
-| VS Code, JetBrains | docs/08-ide-integrations.md |
-| Skills framework | docs/09-skills.md |
-| Plugins system | docs/10-plugins.md |
-| Subagents | docs/11-subagents.md |
-| Agent SDK | docs/12-agent-sdk.md |
-| Best practices | docs/13-best-practices.md |
-| Checkpoints, rewind | docs/14-checkpoints-and-rewind.md |
-| Headless mode, CI/CD | docs/15-headless-and-automation.md |
-| Background tasks | docs/16-background-tasks.md |
+Choose the appropriate file based on each file's title (the `# heading` on line 1) and existing content. You already read all the docs in Step 3, so use that knowledge to place updates in the right file. If a topic doesn't fit any existing file, create a new numbered file following the existing naming convention (e.g., `docs/18-new-topic.md`) and add it to `README.md`.
 
 ### Update Guidelines
 
@@ -149,7 +113,7 @@ After making **significant** updates, commit and push:
 
    🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
-   Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
+   Co-Authored-By: Claude <noreply@anthropic.com>"
    ```
 
 5. **Push to GitHub**:

@@ -113,12 +113,14 @@ Common allowlist additions:
 git worktree add ../project-feature-a feature-a
 git worktree add ../project-feature-b feature-b
 
-# Run Claude in each
+# Run Claude in each (separate terminals)
 cd ../project-feature-a && claude
 cd ../project-feature-b && claude
 ```
 
-Each Claude works independently on different features.
+Each Claude works independently on different features. You can also use the built-in `/worktree` command to create a session-scoped worktree, or spawn subagents with `isolation: "worktree"` for fully isolated parallel work.
+
+See [Git Worktrees](./17-git-worktrees.md) for full details.
 
 ### Headless Fan-Out
 
