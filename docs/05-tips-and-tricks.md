@@ -17,15 +17,17 @@
 | Shortcut | Action |
 |----------|--------|
 | `Ctrl+O` | Toggle verbose output (transcript mode) |
+| `Ctrl+B` | Background running bash commands and agents (tmux users press twice) |
+| `Ctrl+F` | Kill all background agents (press twice within 3s to confirm) |
+| `Ctrl+G` | Open prompt in default text editor ($EDITOR) |
+| `Ctrl+T` | Toggle task list display in terminal status area |
 | `Shift+Tab` or `Alt+M` | Toggle permission modes (normal/plan/acceptEdits) |
 | `Option+P` (Mac) / `Alt+P` | Switch model while typing prompt |
 | `Alt+T` | Toggle thinking mode (primary shortcut) |
 | `Tab` | Toggle thinking mode (alternative, sticky across sessions) |
-| `Esc + Esc` | Rewind code/conversation (double-tap Escape) |
-| `Ctrl+G` | Edit prompt in system text editor ($EDITOR) |
+| `Esc + Esc` | Rewind code/conversation or summarize from a selected message |
 | `Ctrl+Y` | Yank (paste) deleted text |
 | `Alt+Y` | Yank-pop (cycle through kill ring after Ctrl+Y) |
-| `Ctrl+T` | Toggle syntax highlighting (in `/theme`) |
 | `Ctrl+R` | Search command history (searchable prompt history) |
 | `Ctrl+S` | Copy stats screenshot to clipboard |
 | `Alt+←/→` | Word-by-word navigation |
@@ -358,3 +360,35 @@ claude --resume my-feature-work
 ```
 
 The `/resume` screen shows sessions grouped by branch with search, preview (P), and rename (R) shortcuts.
+
+## Prompt Suggestions
+
+Claude Code shows grayed-out suggestions in the prompt input:
+
+- **First open**: Based on your project's git history and recent file changes
+- **After responses**: Follow-up steps or natural continuations of your workflow
+- **Accept**: Press `Tab` to accept, or `Enter` to accept and submit
+- **Dismiss**: Start typing to dismiss
+
+Disable with: `export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false`
+
+## Task List
+
+For complex multi-step work, Claude creates a task list to track progress:
+
+- Press `Ctrl+T` to toggle the task list view (shows up to 10 tasks)
+- Tasks persist across context compactions
+- Share across sessions: `CLAUDE_CODE_TASK_LIST_ID=my-project claude`
+- To revert to the previous TODO list: `CLAUDE_CODE_ENABLE_TASKS=false`
+
+## PR Review Status
+
+When on a branch with an open pull request, Claude Code shows a clickable PR link in the footer (e.g., "PR #446") with a colored underline:
+
+- **Green**: approved
+- **Yellow**: pending review
+- **Red**: changes requested
+- **Gray**: draft
+- **Purple**: merged
+
+Requires the `gh` CLI to be installed and authenticated. Updates every 60 seconds.

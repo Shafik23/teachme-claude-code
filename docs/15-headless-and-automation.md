@@ -258,11 +258,17 @@ claude --disable-slash-commands
 # Set max budget
 claude --max-budget-usd 10.00
 
+# Limit agentic turns
+claude -p --max-turns 3 "Fix lint errors"
+
 # Custom session ID
 claude --session-id my-session --resume
 
 # Fork a session
 claude --resume abc123 --fork-session --session-id new-session
+
+# Resume sessions linked to a GitHub PR
+claude --from-pr 123
 
 # Define custom subagents via JSON
 claude --agents '{"analyzer": {"prompt": "You analyze code", "tools": ["Read", "Grep"]}}'
@@ -270,8 +276,32 @@ claude --agents '{"analyzer": {"prompt": "You analyze code", "tools": ["Read", "
 # Output format for scripting
 claude -p "Analyze this" --output-format json
 
+# Get validated JSON output matching a schema
+claude -p --json-schema '{"type":"object","properties":{"issues":{"type":"array"}}}' "Find bugs"
+
 # Restrict which built-in tools Claude can use
 claude --tools "Read,Glob,Grep"
+
+# Automatic model fallback when default is overloaded
+claude -p --fallback-model sonnet "Review this code"
+
+# Customize system prompt (replace or append)
+claude --system-prompt "You are a Python expert"
+claude --append-system-prompt "Always use TypeScript"
+claude -p --system-prompt-file ./custom-prompt.txt "Review this"
+claude -p --append-system-prompt-file ./rules.txt "Review this"
+
+# Load MCP servers from a config file
+claude --mcp-config ./mcp.json
+
+# Start in isolated git worktree
+claude --worktree feature-auth
+
+# Create a web session on claude.ai
+claude --remote "Fix the login bug"
+
+# Resume a web session locally
+claude --teleport
 ```
 
 ## Error Handling

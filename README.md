@@ -14,14 +14,14 @@ Claude Code is an AI-powered pair programmer that helps you:
 ## Quick Start
 
 ```bash
-# Install Claude Code
+# Install Claude Code (recommended)
 curl -fsSL https://claude.ai/install.sh | bash
-
-# Or via npm (requires Node.js 18+)
-npm install -g @anthropic-ai/claude-code
 
 # Or via Homebrew
 brew install --cask claude-code
+
+# Or via WinGet (Windows)
+winget install Anthropic.ClaudeCode
 ```
 
 Then simply run:
@@ -64,6 +64,7 @@ claude
 | [15-headless-and-automation.md](./docs/15-headless-and-automation.md) | CI/CD integration and scripting |
 | [16-background-tasks.md](./docs/16-background-tasks.md) | Run long operations in background |
 | [17-git-worktrees.md](./docs/17-git-worktrees.md) | Parallel work with git worktree isolation |
+| [18-agent-teams.md](./docs/18-agent-teams.md) | Coordinate multiple agents on complex tasks |
 
 ### Examples
 | File | Description |

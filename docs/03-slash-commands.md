@@ -67,7 +67,9 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 
 | Command | Description |
 |---------|-------------|
+| `/copy` | Copy the last assistant response to clipboard |
 | `/cost` | Show token usage statistics for current session |
+| `/debug [description]` | Troubleshoot current session by reading the session debug log |
 | `/stats` | Visualize daily usage, streaks, and favorite model (Ctrl+S to copy screenshot, `r` to cycle date ranges) |
 | `/status` | Show version, model, account, and connectivity info |
 | `/usage` | Show plan usage limits and rate limit status |
