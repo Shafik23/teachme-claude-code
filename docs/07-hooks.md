@@ -80,9 +80,12 @@ Add hooks to your `settings.json`:
 
 | Option | Description |
 |--------|-------------|
-| `type` | `"command"` for bash commands, `"prompt"` for LLM evaluation, `"agent"` for multi-turn subagent verification |
+| `type` | `"command"` for bash commands, `"prompt"` for LLM evaluation, `"agent"` for multi-turn subagent verification, `"http"` for HTTP POST to a URL |
 | `command` | The bash command to execute (for `type: "command"`) |
 | `prompt` | The prompt for LLM evaluation (for `type: "prompt"` or `type: "agent"`) |
+| `url` | The URL to POST to (for `type: "http"`) |
+| `headers` | HTTP headers with env var interpolation via `$VAR` (for `type: "http"`) |
+| `allowedEnvVars` | List of env vars allowed in header interpolation (for `type: "http"`) |
 | `model` | Override model for prompt/agent hooks (default: Haiku) |
 | `timeout` | Max execution time in seconds (default: 600, max: 600) |
 | `once` | If `true`, hook only runs once per session |
@@ -316,6 +319,35 @@ This is useful for:
 - Adding flags or options to commands
 - Rewriting file paths
 - Injecting environment-specific settings
+
+## HTTP Hooks
+
+Use `type: "http"` hooks to POST event data to an HTTP endpoint instead of running a shell command. The endpoint receives the same JSON that a command hook would get on stdin, and returns results through the HTTP response body using the same JSON format.
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "http",
+            "url": "http://localhost:8080/hooks/tool-use",
+            "headers": {
+              "Authorization": "Bearer $MY_TOKEN"
+            },
+            "allowedEnvVars": ["MY_TOKEN"]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+The endpoint should return a JSON response body using the same output format as command hooks. Header values support env var interpolation (`$VAR` or `${VAR}`), but only variables listed in `allowedEnvVars` are resolved.
+
+> **Note**: HTTP hooks must be configured by editing your settings JSON directly. The `/hooks` interactive menu only supports adding command hooks.
 
 ## Prompt-Based Hooks
 

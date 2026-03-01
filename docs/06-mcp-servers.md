@@ -221,6 +221,26 @@ Syntax:
 
 Find hundreds more at [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
 
+## Claude.ai MCP Servers
+
+If you've logged into Claude Code with a Claude.ai account, MCP servers you've added in Claude.ai are automatically available in Claude Code. Configure servers at [claude.ai/settings/connectors](https://claude.ai/settings/connectors). Use `/mcp` in Claude Code to see them alongside your local servers.
+
+To disable this, set:
+
+```bash
+ENABLE_CLAUDEAI_MCP_SERVERS=false claude
+```
+
+## MCP Output Limits
+
+Claude Code displays a warning when MCP tool output exceeds 10,000 tokens. The default maximum is 25,000 tokens. Adjust with the `MAX_MCP_OUTPUT_TOKENS` environment variable:
+
+```bash
+# Set a higher limit for tools that produce large outputs
+export MAX_MCP_OUTPUT_TOKENS=50000
+claude
+```
+
 ## Using MCP in Sessions
 
 Once configured, Claude automatically has access to MCP tools:

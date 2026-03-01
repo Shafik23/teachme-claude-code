@@ -6,6 +6,18 @@ Skills extend what Claude can do. Create a `SKILL.md` file with instructions, an
 
 Skills follow the [Agent Skills](https://agentskills.io) open standard, which works across multiple AI tools.
 
+## Bundled Skills
+
+Bundled skills ship with Claude Code and are available in every session. Unlike built-in commands which execute fixed logic, bundled skills are prompt-based: they give Claude a detailed playbook and let it orchestrate work using its tools (spawning parallel agents, reading files, adapting to your codebase).
+
+| Skill | Description |
+|-------|-------------|
+| `/simplify` | Reviews recently changed files for code reuse, quality, and efficiency, then fixes issues. Spawns three review agents in parallel (code reuse, code quality, efficiency). Pass optional text to focus: `/simplify focus on memory efficiency` |
+| `/batch <instruction>` | Orchestrates large-scale changes across a codebase in parallel. Researches the codebase, decomposes work into 5-30 independent units, and spawns one background agent per unit in isolated git worktrees. Each agent implements, tests, and opens a PR. Requires a git repository |
+| `/debug [description]` | Troubleshoots your current Claude Code session by reading the session debug log. Optionally describe the issue to focus the analysis |
+
+Claude Code also includes a bundled developer platform skill that activates automatically when your code imports the Anthropic SDK.
+
 ## How Skills Work
 
 1. **Discovery**: Claude loads only the name and description of available Skills at startup (descriptions are always in context)

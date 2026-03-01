@@ -21,7 +21,8 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 |---------|-------------|
 | `/config` | Open settings interface (Config tab) |
 | `/settings` | Alias for `/config` |
-| `/model` | Select or change AI model |
+| `/model` | Select or change AI model (shows currently active model) |
+| `/fast` | Toggle fast mode for Opus 4.6 (same model, faster output) |
 | `/permissions` | View or update permissions |
 | `/privacy-settings` | View and update privacy settings |
 | `/statusline` | Configure status line display |
@@ -41,7 +42,7 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | Command | Description |
 |---------|-------------|
 | `/init` | Initialize project with CLAUDE.md |
-| `/memory` | Edit CLAUDE.md memory files |
+| `/memory` | Manage auto-memory (Claude automatically saves useful context across sessions) |
 | `/review` | Request code review |
 | `/todos` | List current TODO items |
 | `/rewind` | Rewind conversation and/or code |
@@ -67,9 +68,8 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 
 | Command | Description |
 |---------|-------------|
-| `/copy` | Copy the last assistant response to clipboard |
+| `/copy` | Copy the last assistant response to clipboard (interactive picker for code blocks, or "always copy full response" option) |
 | `/cost` | Show token usage statistics for current session |
-| `/debug [description]` | Troubleshoot current session by reading the session debug log |
 | `/stats` | Visualize daily usage, streaks, and favorite model (Ctrl+S to copy screenshot, `r` to cycle date ranges) |
 | `/status` | Show version, model, account, and connectivity info |
 | `/usage` | Show plan usage limits and rate limit status |
@@ -97,6 +97,16 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 | `/terminal-setup` | Install Shift+Enter key binding for multiline input (iTerm2, VSCode, Kitty, Alacritty, Zed, Warp, WezTerm, Ghostty, and more) |
 | `/security-review` | Security review of pending changes |
 | `/browser` | Manage Claude in Chrome browser integration (Beta) |
+
+## Bundled Skills
+
+These skills ship with Claude Code and are available in every session. Unlike built-in commands, bundled skills are prompt-based: they give Claude a detailed playbook and let it orchestrate the work using its tools.
+
+| Command | Description |
+|---------|-------------|
+| `/simplify` | Reviews recently changed files for code reuse, quality, and efficiency, then fixes issues. Spawns three review agents in parallel. Pass optional text to focus: `/simplify focus on memory efficiency` |
+| `/batch <instruction>` | Orchestrates large-scale changes across a codebase in parallel. Researches the codebase, decomposes work into 5-30 independent units, and spawns one background agent per unit in isolated git worktrees. Each agent implements its unit, runs tests, and opens a PR. Requires a git repository. Example: `/batch migrate src/ from Solid to React` |
+| `/debug [description]` | Troubleshoots your current Claude Code session by reading the session debug log. Optionally describe the issue to focus the analysis |
 
 ## Account
 
