@@ -39,6 +39,7 @@ A standalone app for running Claude Code outside your IDE or terminal. Review di
 
 - [macOS](https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect) (Intel and Apple Silicon)
 - [Windows x64](https://claude.ai/api/desktop/win32/x64/exe/latest/redirect)
+- [Windows ARM64](https://claude.ai/api/desktop/win32/arm64/exe/latest/redirect) (remote sessions only)
 
 ### Option 6: Web (No Install Required)
 

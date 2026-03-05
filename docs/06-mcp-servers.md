@@ -292,6 +292,26 @@ claude mcp add --transport http \
 
 The `--client-secret` flag prompts for the secret with masked input. For CI, set `MCP_CLIENT_SECRET` as an environment variable.
 
+### Override OAuth Metadata Discovery
+
+If your MCP server returns errors on the standard OAuth metadata endpoint but exposes a working OIDC endpoint, set `authServerMetadataUrl` in the `oauth` object of your server config in `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "my-server": {
+      "type": "http",
+      "url": "https://mcp.example.com/mcp",
+      "oauth": {
+        "authServerMetadataUrl": "https://auth.example.com/.well-known/openid-configuration"
+      }
+    }
+  }
+}
+```
+
+The URL must use `https://`.
+
 ## Troubleshooting
 
 ### Check Server Status

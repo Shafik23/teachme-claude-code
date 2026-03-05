@@ -18,6 +18,7 @@ Hooks are user-defined shell commands, LLM prompts, or subagents that execute at
 | `TeammateIdle` | When an agent team teammate goes idle | Coordinate team workflows |
 | `TaskCompleted` | When a task is marked as completed | Post-completion actions |
 | `ConfigChange` | When a config file changes during session | Audit, block unauthorized changes |
+| `InstructionsLoaded` | When a CLAUDE.md or `.claude/rules/*.md` file is loaded into context | Modify or validate instructions at load time |
 | `WorktreeCreate` | When a worktree is created | Custom VCS worktree behavior |
 | `WorktreeRemove` | When a worktree is removed | Worktree cleanup |
 | `PreCompact` | Before conversation compaction | Pre-compaction logic |
@@ -372,6 +373,17 @@ Use an LLM (Haiku) to evaluate hooks with context-aware decisions:
 ```
 
 Prompt-based hooks work especially well with `Stop` and `SubagentStop` events for intelligent, context-aware decisions about whether Claude should continue working. Use `$ARGUMENTS` as a placeholder for the hook input JSON. You can specify a different model with the `model` field if you need more capability than the default (Haiku).
+
+**Avoiding infinite loops with Stop hooks**: When a Stop hook continues execution, the next time Claude finishes, the hook fires again. To prevent infinite loops, check the `stop_hook_active` field in the input JSON and exit early if it's `true`:
+
+```bash
+#!/bin/bash
+INPUT=$(cat)
+if [ "$(echo "$INPUT" | jq -r '.stop_hook_active')" = "true" ]; then
+  exit 0  # Allow Claude to stop
+fi
+# ... rest of your hook logic
+```
 
 ## Agent-Based Hooks
 

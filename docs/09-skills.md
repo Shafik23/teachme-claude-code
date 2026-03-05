@@ -15,8 +15,7 @@ Bundled skills ship with Claude Code and are available in every session. Unlike 
 | `/simplify` | Reviews recently changed files for code reuse, quality, and efficiency, then fixes issues. Spawns three review agents in parallel (code reuse, code quality, efficiency). Pass optional text to focus: `/simplify focus on memory efficiency` |
 | `/batch <instruction>` | Orchestrates large-scale changes across a codebase in parallel. Researches the codebase, decomposes work into 5-30 independent units, and spawns one background agent per unit in isolated git worktrees. Each agent implements, tests, and opens a PR. Requires a git repository |
 | `/debug [description]` | Troubleshoots your current Claude Code session by reading the session debug log. Optionally describe the issue to focus the analysis |
-
-Claude Code also includes a bundled developer platform skill that activates automatically when your code imports the Anthropic SDK.
+| `/claude-api` | Loads Claude API reference material for your project's language (Python, TypeScript, Java, Go, Ruby, C#, PHP, or cURL) and Agent SDK reference for Python and TypeScript. Covers tool use, streaming, batches, structured outputs, and common pitfalls. Also activates automatically when your code imports `anthropic`, `@anthropic-ai/sdk`, or `claude_agent_sdk` |
 
 ## How Skills Work
 
@@ -26,6 +25,8 @@ Claude Code also includes a bundled developer platform skill that activates auto
 4. **Direct invocation**: You can also invoke any user-invocable skill with `/skill-name`
 
 **Hot-Reload**: Skills created or modified in `~/.claude/skills` or `.claude/skills` are immediately available without restarting your session.
+
+**Additional Directories**: Skills in `.claude/skills/` within directories added via `--add-dir` are also loaded automatically and picked up by live change detection.
 
 ## Creating a Skill
 
@@ -98,6 +99,7 @@ Skills support dynamic values:
 | `$ARGUMENTS[N]` | Access a specific argument by 0-based index |
 | `$N` | Shorthand for `$ARGUMENTS[N]` (e.g., `$0`, `$1`) |
 | `${CLAUDE_SESSION_ID}` | The current session ID |
+| `${CLAUDE_SKILL_DIR}` | The directory containing the skill's `SKILL.md` file. Use to reference bundled scripts or files |
 
 ### Dynamic Context Injection
 

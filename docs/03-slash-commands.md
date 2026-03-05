@@ -107,6 +107,7 @@ These skills ship with Claude Code and are available in every session. Unlike bu
 | `/simplify` | Reviews recently changed files for code reuse, quality, and efficiency, then fixes issues. Spawns three review agents in parallel. Pass optional text to focus: `/simplify focus on memory efficiency` |
 | `/batch <instruction>` | Orchestrates large-scale changes across a codebase in parallel. Researches the codebase, decomposes work into 5-30 independent units, and spawns one background agent per unit in isolated git worktrees. Each agent implements its unit, runs tests, and opens a PR. Requires a git repository. Example: `/batch migrate src/ from Solid to React` |
 | `/debug [description]` | Troubleshoots your current Claude Code session by reading the session debug log. Optionally describe the issue to focus the analysis |
+| `/claude-api` | Loads Claude API reference material for your project's language (Python, TypeScript, Java, Go, Ruby, C#, PHP, or cURL) and Agent SDK reference for Python and TypeScript. Covers tool use, streaming, batches, structured outputs, and common pitfalls. Also activates automatically when your code imports `anthropic`, `@anthropic-ai/sdk`, or `claude_agent_sdk` |
 
 ## Account
 
