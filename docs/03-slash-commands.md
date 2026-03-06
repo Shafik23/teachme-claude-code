@@ -84,7 +84,9 @@ Slash commands control Claude Code behavior. Type `/` to see available commands.
 |---------|-------------|
 | `/teleport` | Resume a remote session from claude.ai in your terminal |
 | `/desktop` | Hand off terminal session to the Desktop app for visual diff review |
+| `/remote-control` (or `/rc`) | Start a Remote Control session to continue from your phone, tablet, or any browser |
 | `/remote-env` | Configure remote environment settings |
+| `/mobile` | Display QR code to download the Claude app for iOS/Android |
 
 ## Advanced
 

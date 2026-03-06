@@ -31,6 +31,7 @@
 | `Ctrl+R` | Search command history (searchable prompt history) |
 | `Ctrl+S` | Copy stats screenshot to clipboard |
 | `Alt+←/→` | Word-by-word navigation |
+| `Ctrl+U` | Exit bash mode |
 | `Ctrl+K` | Delete from cursor to end of line |
 | `?` | Show all available shortcuts |
 

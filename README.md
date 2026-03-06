@@ -65,6 +65,8 @@ claude
 | [16-background-tasks.md](./docs/16-background-tasks.md) | Run long operations in background |
 | [17-git-worktrees.md](./docs/17-git-worktrees.md) | Parallel work with git worktree isolation |
 | [18-agent-teams.md](./docs/18-agent-teams.md) | Coordinate multiple agents on complex tasks |
+| [19-remote-and-multi-device.md](./docs/19-remote-and-multi-device.md) | Remote Control, Slack, Desktop app, and multi-device access |
+| [20-sandboxing.md](./docs/20-sandboxing.md) | Filesystem and network isolation for safer execution |
 
 ### Examples
 | File | Description |

@@ -315,6 +315,54 @@ Or via CLI:
 claude --disallowedTools "Task(code-reviewer)"
 ```
 
+## Fast Mode
+
+Toggle fast mode for 2.5x faster Opus 4.6 responses at higher cost per token:
+
+```
+/fast
+```
+
+Or in settings:
+```json
+{
+  "fastMode": true
+}
+```
+
+Fast mode uses the same Opus 4.6 model with a different API configuration prioritizing speed. Admins can require per-session opt-in:
+
+```json
+{
+  "fastModePerSessionOptIn": true
+}
+```
+
+## Sandbox Configuration
+
+Enable sandboxed bash execution with filesystem and network isolation:
+
+```json
+{
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "excludedCommands": ["git", "docker"],
+    "filesystem": {
+      "allowWrite": ["~/.kube", "//tmp/build"],
+      "denyWrite": ["//etc"],
+      "denyRead": ["~/.aws/credentials"]
+    },
+    "network": {
+      "allowedDomains": ["github.com", "*.npmjs.org"],
+      "allowLocalBinding": true
+    }
+  }
+}
+```
+
+See [Sandboxing](./20-sandboxing.md) for full details.
+
 ## Release Channel
 
 Switch between stable and latest release channels via `/config`:
