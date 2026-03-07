@@ -31,6 +31,9 @@ Or install from: [VS Code Marketplace](https://marketplace.visualstudio.com/item
 | **Copy Code Button** | Copy code blocks and bash tool inputs easily |
 | **Clickable Image Links** | `[Image #N]` links open attached images in the default viewer |
 | **Thinking Toggle** | Enable/disable extended thinking in IDE |
+| **Session Spark Icon** | Activity bar icon listing all Claude Code sessions as full editors |
+| **Plan Document View** | Full markdown view for plans with comment support for feedback |
+| **Native MCP Dialog** | Manage MCP servers (enable/disable, OAuth) directly from the chat panel via `/mcp` |
 
 ### Keyboard Shortcuts
 

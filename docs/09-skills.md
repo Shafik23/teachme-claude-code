@@ -15,6 +15,7 @@ Bundled skills ship with Claude Code and are available in every session. Unlike 
 | `/simplify` | Reviews recently changed files for code reuse, quality, and efficiency, then fixes issues. Spawns three review agents in parallel (code reuse, code quality, efficiency). Pass optional text to focus: `/simplify focus on memory efficiency` |
 | `/batch <instruction>` | Orchestrates large-scale changes across a codebase in parallel. Researches the codebase, decomposes work into 5-30 independent units, and spawns one background agent per unit in isolated git worktrees. Each agent implements, tests, and opens a PR. Requires a git repository |
 | `/debug [description]` | Troubleshoots your current Claude Code session by reading the session debug log. Optionally describe the issue to focus the analysis |
+| `/loop [interval] <prompt>` | Runs a prompt repeatedly on an interval while the session stays open. Schedules a recurring cron task and confirms the cadence. Useful for polling deployments, babysitting PRs, or periodically re-running another skill. Example: `/loop 5m check if the deploy finished` |
 | `/claude-api` | Loads Claude API reference material for your project's language (Python, TypeScript, Java, Go, Ruby, C#, PHP, or cURL) and Agent SDK reference for Python and TypeScript. Covers tool use, streaming, batches, structured outputs, and common pitfalls. Also activates automatically when your code imports `anthropic`, `@anthropic-ai/sdk`, or `claude_agent_sdk` |
 
 ## How Skills Work

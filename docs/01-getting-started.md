@@ -35,7 +35,7 @@ winget install Anthropic.ClaudeCode
 
 ### Option 5: Desktop App
 
-A standalone app for running Claude Code outside your IDE or terminal. Review diffs visually and run multiple sessions side by side.
+A standalone app for running Claude Code outside your IDE or terminal. Review diffs visually, run multiple sessions side by side, schedule recurring tasks, and kick off cloud sessions.
 
 - [macOS](https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect) (Intel and Apple Silicon)
 - [Windows x64](https://claude.ai/api/desktop/win32/x64/exe/latest/redirect)
